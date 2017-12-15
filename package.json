@@ -1,0 +1,28 @@
+{
+  "name": "songlist",
+  "version": "1.0.0",
+  "description": "Simple App for managing a list of Songs that I play for Church Choir",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lancewhitesel/songlist.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lancewhitesel/songlist/issues"
+  },
+  "homepage": "https://github.com/lancewhitesel/songlist#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongodb": "^3.0.0-rc0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.5"
+  }
+}
