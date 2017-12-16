@@ -2,22 +2,22 @@
 
 // Declare app level module which depends on views, and components
 angular.module('songlist', [
-  'ngRoute' 
+  'ngRoute'
   /*,
   'myApp.view1',
   'myApp.view2',
   'myApp.version'
   */
 ]).
-config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-  $locationProvider.hashPrefix('!');
+  config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
+    $locationProvider.hashPrefix('!');
 
-  $routeProvider.when('/', {
-    templateUrl: 'home.html' // ,
-    // controller: 'HomeController'
-  });
+    $routeProvider.when('/', {
+      templateUrl: 'home.html' // ,
+      // controller: 'HomeController'
+    });
 
-  // $routeProvider.otherwise({redirectTo: '/view1'});
-  $routeProvider.otherwise({redirectTo: '/'});
+    // $routeProvider.otherwise({redirectTo: '/view1'});
+    $routeProvider.otherwise({ redirectTo: '/' });
 
-}]);
+  }]);

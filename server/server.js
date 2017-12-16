@@ -5,18 +5,15 @@ const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
-// app.use(express.static(path.join(__dirname, 'angularjs')));
 app.use(express.static('angularjs'));
 
 var db;
 
 app.get('/', (req, res) => {
-  // res.sendFile(path.resolve('angularjs/index.html'));
   res.sendFile(path.resolve('index.html'));
 });
 
 app.post('/quotes', (req, res) => {
-  console.log('db: ', db.collection);
   db.collection('quotes').save(req.body, (err, result) => {
     if (err) return console.log(err);
 
@@ -28,8 +25,7 @@ app.post('/quotes', (req, res) => {
 app.get('/list', (req, res) => {
   console.log('attempting to get list...');
   db.collection('quotes').find().toArray(function(err, results) {
-    console.log(results)
-    // send HTML file populated with quotes here
+    res.send(results);
   })
 });
 
