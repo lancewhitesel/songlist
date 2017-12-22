@@ -6,3 +6,11 @@
   display: flex;
   flex-direction: row;
 }
+
+.song-bullets {
+  list-style-type: none;
+}
+
+.song-bullets li {
+  margin-bottom: 10px;
+}

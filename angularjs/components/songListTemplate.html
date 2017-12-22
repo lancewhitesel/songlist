@@ -1,13 +1,12 @@
 <div>
-  Song List:
+  My Song List:
 
-  <ul>
+  <ul class="song-bullets">
     <li ng-repeat="song in $ctrl.songs">
-      <div class="flex-horizontal">
-        <h5>Name:</h5> {{song.name}}
-        <h5>Quote:</h5> {{song.quote}}
-      </div>
-
+      <!-- <div class="flex-horizontal"> -->
+      <span><b>Name:</b> {{song.name}}</span>
+      <br>
+      <span><b>Quote:</b> {{song.quote}}</span>
     </li>
   </ul>
 </div>

@@ -3,7 +3,7 @@
 
   angular
     .module('songlist')
-    .component('songList', {
+    .component('songList', {  
       templateUrl: 'components/songListTemplate.html',
       controller: SongListController
     });
