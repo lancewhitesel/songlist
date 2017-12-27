@@ -24,7 +24,7 @@ app.post('/quotes', (req, res) => {
 
 app.get('/list', (req, res) => {
   console.log('attempting to get list...');
-  db.collection('quotes').find().toArray(function(err, results) {
+  db.collection('songs').find().toArray(function(err, results) {
     res.send(results);
   })
 });
