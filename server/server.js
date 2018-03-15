@@ -3,6 +3,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const MongoClient = require('mongodb').MongoClient;
 
+const SONGS_COLLECTION = 'songs';
+
 const app = express();
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('angularjs'));
@@ -13,9 +15,12 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve('index.html'));
 });
 
-app.post('/quotes', (req, res) => {
-  db.collection('quotes').save(req.body, (err, result) => {
-    if (err) return console.log(err);
+app.post('/song', (req, res) => {
+  console.log('song post data: ', req.body);
+
+  db.collection(SONGS_COLLECTION).save(req.body, (err, result) => {
+    if (err) 
+      return console.log(err);
 
     console.log('saved to database: ', req.body);
     res.redirect('/')
@@ -24,7 +29,7 @@ app.post('/quotes', (req, res) => {
 
 app.get('/list', (req, res) => {
   console.log('attempting to get list...');
-  db.collection('songs').find().toArray(function(err, results) {
+  db.collection(SONGS_COLLECTION).find().toArray(function(err, results) {
     res.send(results);
   })
 });

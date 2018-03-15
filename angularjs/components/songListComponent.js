@@ -16,8 +16,13 @@
     }
 
     $ctrl.getSource = function(url) {
-      var host = new URL(url).hostname
-      console.log("host: ", host);
+      var host;
+      try {
+        host = new URL(url).hostname
+      } catch(error) {
+        console.warn('Invalid URL for song: ', url);
+      }
+      
       return URL_MAP[host] || 'Unknown';
     }
 
