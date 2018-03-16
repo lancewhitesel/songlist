@@ -10,20 +10,19 @@ import SearchBar from './search/SearchBar.jsx';
 import TextList from './text/TextList.jsx';
 import VideoList from './video/VideoList.jsx';
 
-  const theme = createMuiTheme();
-  const styles = theme => ({
-    h1: {
-      color: 'purple'
-    },
-    content: {
-      display: 'flex',
-      flexDirection: 'row'
-    },
-    listContainer: {
-      width: '50%',
-      textAlign: 'center'
-    }
-  });
+const theme = createMuiTheme();
+const styles = theme => ({
+  h1: {
+    color: 'purple'
+  },
+  content: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  listContainer: {
+    width: '50%',
+  }
+});
 
 class SongList extends Component {
   constructor(props) {
@@ -49,10 +48,10 @@ class SongList extends Component {
           <SearchBar />
           <div className={classes.content}>
             <div className={classes.listContainer}>
-              <TextList />
+              <TextList songs={this.state.songs} />
             </div>
-            <div>
-              <VideoList />
+            <div className={classes.listContainer}>
+              <VideoList songs={this.state.songs} />
             </div>
           </div>
         </Typography>

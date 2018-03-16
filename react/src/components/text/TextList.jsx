@@ -1,8 +1,15 @@
 import React from 'react';
 
-export default function TextList() {
-  return <h2> Text List! </h2>;
+import withList from '../../hoc/withList';
+
+import TextListItem from './TextListItem.jsx';
+
+const TextList = (props) => {
+  return withList('Text List!', TextListItem)(props);
 }
+
+export default TextList;
+
         {/* <div ng-if="!$ctrl.songs.length">No songs yet</div>
           <table class="song-bullets">
             <tr>
