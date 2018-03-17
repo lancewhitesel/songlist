@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+// const eslintFormatter = require('react-dev-utils/eslintFormatter');
 
 module.exports = {
   entry: './src/app.js',
@@ -14,26 +15,22 @@ module.exports = {
     port: 3000,
     // stats: "errors-only"
   },
+  resolve: {
+    extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
+        enforce: 'pre',
         exclude: /node_modules/,
-        use: 'babel-loader'
+        loader: 'eslint-loader',
       },
+      // Process JS with Babel.
       {
-        test: /\.jsx$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
-      },
-      {
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: ['css-loader', 'sass-loader'],
-          publicPath: '/dist'
-        })
+        use: 'babel-loader',
       },
     ]
   },

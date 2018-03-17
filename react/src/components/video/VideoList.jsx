@@ -1,11 +1,15 @@
-import React from 'react';
+import PropTypes from 'prop-types';
+import asList from '../../hoc/asList';
+import VideoListItem from './VideoListItem';
 
-import withList from '../../hoc/withList';
+const VideoList = props => asList(
+  'Video List!',
+  VideoListItem,
+  selectedSong => props.onSelect(selectedSong)
+)(props);
 
-import VideoListItem from './VideoListItem.jsx';
-
-const VideoList = (props) => {
-  return withList('Video List!', VideoListItem)(props);
-}
+VideoList.propTypes = {
+  onSelect: PropTypes.func
+};
 
 export default VideoList;
