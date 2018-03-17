@@ -1,13 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
 
-const VideoDetail = ({ song }) => {
-  const { videoId } = song.id;
+const styles = theme => ({
+  details: {
+    marginTop: 10,
+    padding: 10,
+    border: ['3,', 'solid', '#ddd'],
+    borderRadius: 4,
+  }
+});
+
+const VideoDetail = ({ song, classes }) => {
+  const { snippet: { title, description }, id: { videoId } } = song;
   const url = `https://www.youtube.com/embed/${videoId}`;
-  const { title } = song.snippet;
 
   return (
-    <div className="video-detail col-md-8">
+    <div className="col-md-8">
       <div className="embed-responsive embed-responsive-16by9">
         <iframe
           src={url}
@@ -16,17 +25,17 @@ const VideoDetail = ({ song }) => {
           title={title}
         />
       </div>
-      <div className="details">
+      <div className={classes.details}>
         <div>{title}</div>
-        <div>{song.snippet.description}</div>
+        <div>{description}</div>
       </div>
     </div>
-
   );
 };
 
 VideoDetail.propTypes = {
+  classes: PropTypes.object.isRequired,
   song: PropTypes.object.isRequired,
 };
 
-export default VideoDetail;
+export default withStyles(styles)(VideoDetail);

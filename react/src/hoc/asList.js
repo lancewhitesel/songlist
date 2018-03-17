@@ -1,28 +1,23 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import List from 'material-ui/List';
 
-const iterateOnSongs = (songs, Component, callback) =>
-  songs.map(song => <Component key={song.etag} song={song} onSelect={callback} />);
-
-const asList = (title, ItemComponent, callback) => {
-  const ListComponent = props => (
-    <div className="container">
-      <h2 style={{ textAlign: 'center' }}> {title} </h2>
-      <ul>
-        {iterateOnSongs(props.songs, ItemComponent, callback)}
-      </ul>
-    </div>
+export default (Component) => {
+  const ListComponent = ({ songs, onSelect }) => (
+    <List>
+      {songs.map(song => <Component key={song.etag} song={song} onSelect={onSelect} />)};
+    </List>
   );
 
   ListComponent.propTypes = {
-    songs: PropTypes.arrayOf(PropTypes.object)
+    songs: PropTypes.arrayOf(PropTypes.object),
+    onSelect: PropTypes.func,
   };
 
   ListComponent.defaultProps = {
-    songs: []
+    songs: [],
+    onSelect: () => {}
   };
 
   return ListComponent;
 };
-
-export default asList;
