@@ -5,7 +5,7 @@ import List from 'material-ui/List';
 export default (Component) => {
   const ListComponent = ({ songs, onSelect }) => (
     <List>
-      {songs.map(song => <Component key={song.etag} song={song} onSelect={onSelect} />)};
+      {songs.map(song => <Component key={song.id} song={song} onSelect={onSelect} />)}
     </List>
   );
 

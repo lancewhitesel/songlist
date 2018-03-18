@@ -2,8 +2,7 @@ import React from 'react';
 import asListItem from '../../hoc/asListItem';
 
 export default props => asListItem((song) => {
-  const imageUrl = song.snippet.thumbnails.default.url;
-  const name = song.snippet.title;
+  const { imageUrl, title } = song;
 
   return (
     <div className="video-list-item media">
@@ -11,7 +10,7 @@ export default props => asListItem((song) => {
         <img src={imageUrl} alt="" className="media-object" />
       </div>
       <div className="media-body">
-        <div className="media-heading">{name}</div>
+        <div className="media-heading">{title}</div>
       </div>
     </div>
   );

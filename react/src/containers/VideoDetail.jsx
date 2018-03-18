@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+import { connect } from 'react-redux';
 
 const styles = theme => ({
   details: {
@@ -12,7 +13,11 @@ const styles = theme => ({
 });
 
 const VideoDetail = ({ song, classes }) => {
-  const { snippet: { title, description }, id: { videoId } } = song;
+  if (!song) {
+    return <h5 className="col-md-8">Select A Song To See Its Video</h5>;
+  }
+
+  const { title, description, videoId } = song;
   const url = `https://www.youtube.com/embed/${videoId}`;
 
   return (
@@ -35,7 +40,17 @@ const VideoDetail = ({ song, classes }) => {
 
 VideoDetail.propTypes = {
   classes: PropTypes.object.isRequired,
-  song: PropTypes.object.isRequired,
+  song: PropTypes.object,
 };
 
-export default withStyles(styles)(VideoDetail);
+VideoDetail.defaultProps = {
+  song: null
+};
+
+function mapStateToProps(state) {
+  return {
+    song: state.selectedSong
+  };
+}
+
+export default withStyles(styles)(connect(mapStateToProps)(VideoDetail));

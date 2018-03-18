@@ -1,9 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 
-import SongList from './components/SongList';
+import reducers from './reducers';
+import SongListApp from './components/SongListApp';
 
 // Keeping this around temporarily until I really grasp JSS
 require('./components/global.scss');
 
-ReactDOM.render(<SongList />, document.getElementById('root'));
+const createStoreWithMiddleware = applyMiddleware()(createStore);
+
+function render() {
+  return (
+    <Provider store={createStoreWithMiddleware(reducers)}>
+      <SongListApp />
+    </Provider>
+  );
+}
+
+ReactDOM.render(render(), document.getElementById('root'));
