@@ -7,7 +7,7 @@ import VideoList from './video/VideoList';
 
 const styles = theme => ({
   tabs: {
-    marginLeft: '15px'
+    marginLeft: '15px',
   },
 });
 
@@ -16,7 +16,7 @@ class TypeTabs extends Component {
     super(props);
 
     this.state = {
-      value: 0
+      value: 0,
     };
   }
 
@@ -48,7 +48,7 @@ TypeTabs.propTypes = {
 };
 
 TypeTabs.defaultProps = {
-  onSelect: () => {}
+  onSelect: () => {},
 };
 
 export default withStyles(styles)(TypeTabs);

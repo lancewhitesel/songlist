@@ -3,6 +3,8 @@ import { withStyles } from 'material-ui/styles';
 import PropTypes from 'prop-types';
 
 import Input from 'material-ui/Input';
+import Button from 'material-ui/Button';
+import DEFAULT_FN from '../../utils';
 
 const styles = theme => ({
   searchBar: {
@@ -10,7 +12,21 @@ const styles = theme => ({
     textAlign: 'center',
     width: '75%',
   },
+  button: {
+    margin: theme.spacing.unit,
+  },
 });
+
+const renderSubmitButton = buttonClass => (
+  <Button
+    type="submit"
+    className={buttonClass}
+    color="primary"
+    variant="raised"
+  >
+    Submit
+  </Button>
+);
 
 class SearchBar extends Component {
   constructor(props) {
@@ -24,16 +40,25 @@ class SearchBar extends Component {
     this.props.onSearchTermChange(term);
   }
 
+  handleSubmit(e, term) {
+    e.preventDefault();
+
+    this.props.onSubmit(this.state.term);
+  }
+
   render() {
-    const { classes: { searchBar } } = this.props;
+    const { classes: { searchBar, button }, onSubmit } = this.props;
 
     return (
-      <Input
-        placeholder="Type Search Text Here"
-        className={searchBar}
-        value={this.state.term}
-        onChange={e => this.handleInputChange(e.target.value)}
-      />
+      <form onSubmit={e => this.handleSubmit(e, this.state.term)}>
+        <Input
+          placeholder="Search For Songs"
+          className={searchBar}
+          value={this.state.term}
+          onChange={e => this.handleInputChange(e.target.value)}
+        />
+        {onSubmit && renderSubmitButton(button)}
+      </form>
     );
   }
 }
@@ -41,10 +66,12 @@ class SearchBar extends Component {
 SearchBar.propTypes = {
   classes: PropTypes.object.isRequired,
   onSearchTermChange: PropTypes.func,
+  onSubmit: PropTypes.func,
 };
 
 SearchBar.defaultProps = {
-  onSearchTermChange: () => {}
+  onSearchTermChange: DEFAULT_FN,
+  onSubmit: DEFAULT_FN,
 };
 
 export default withStyles(styles)(SearchBar);

@@ -16,7 +16,7 @@ export default (Component) => {
 
   ListComponent.defaultProps = {
     songs: [],
-    onSelect: () => {}
+    onSelect: () => {},
   };
 
   return ListComponent;

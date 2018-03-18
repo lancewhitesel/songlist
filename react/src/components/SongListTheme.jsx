@@ -9,21 +9,21 @@ const styles = t => ({
   root: {
     '& h1': {
       textAlign: 'center',
-      color: 'blue'
+      color: 'blue',
     },
     '& .media-object': {
       maxWidth: '64px',
-      marginRight: '15px'
+      marginRight: '15px',
     },
     '& .list-group-item': {
       cursor: 'pointer',
       '&:hover': {
-        backgroundColor: '#eee'
-      }
+        backgroundColor: '#eee',
+      },
     },
     '& .container': {
-      marginBottom: 100
-    }
+      marginBottom: 100,
+    },
   },
 });
 
@@ -42,7 +42,7 @@ const SongListTheme = (props) => {
 
 SongListTheme.propTypes = {
   classes: PropTypes.object.isRequired,
-  children: PropTypes.object.isRequired
+  children: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(SongListTheme);

@@ -5,6 +5,6 @@ export default function selectSong(song) {
   // Here is the action.
   return {
     type: 'SONG_SELECTED',
-    payload: song
+    payload: song,
   };
 }

@@ -9,7 +9,7 @@ const styles = theme => ({
     padding: 10,
     border: ['3,', 'solid', '#ddd'],
     borderRadius: 4,
-  }
+  },
 });
 
 const VideoDetail = ({ song, classes }) => {
@@ -44,12 +44,12 @@ VideoDetail.propTypes = {
 };
 
 VideoDetail.defaultProps = {
-  song: null
+  song: null,
 };
 
 function mapStateToProps(state) {
   return {
-    song: state.selectedSong
+    song: state.selectedSong,
   };
 }
 

@@ -30,18 +30,18 @@ class SongList extends Component {
 
 SongList.propTypes = {
   songs: PropTypes.array.isRequired,
-  selectSong: PropTypes.func
+  selectSong: PropTypes.func,
 };
 
 SongList.defaultProps = {
-  selectSong: () => {}
+  selectSong: () => {},
 };
 
 // Map our _application_ state to our local props via Redux
 function mapStateToProps(state) {
   // Whatever is returned from here is mapped to this.props
   return {
-    songs: state.songs
+    songs: state.songs,
   };
 }
 

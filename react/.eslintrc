@@ -4,7 +4,6 @@
   },
   "extends": ["airbnb", "react-app"],
   "rules": {
-    "comma-dangle": "off",
     "react/jsx-filename-extension": "off",
     "linebreak-style": "off",
     "react/forbid-prop-types": "off",

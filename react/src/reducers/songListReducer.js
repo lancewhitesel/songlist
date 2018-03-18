@@ -13,7 +13,7 @@ export default function (state = {}, action) {
       id: '1',
       title: 'Who You Say I Am',
       videoId: 'F8umfBRlwW8',
-      description: 'Cool!'
+      description: 'Cool!',
     },
   ];
 }
