@@ -22,6 +22,7 @@ const styles = t => ({
       },
     },
     '& .container': {
+      marginTop: 50,
       marginBottom: 100,
     },
   },

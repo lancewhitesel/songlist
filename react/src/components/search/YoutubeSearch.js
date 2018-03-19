@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import searchYoutube from '../actions/searchYoutube';
-import SearchBar from '../components/search/SearchBar';
+import searchYoutube from '../../actions/searchYoutube';
+import SearchBar from '../search/SearchBar';
 
 class YoutubeSearch extends Component {
   componentWillMount() {
@@ -20,7 +20,7 @@ class YoutubeSearch extends Component {
   }
 
   render() {
-    return <SearchBar onSubmit={term => this.handleSubmit(term)} />;
+    return <SearchBar placeholder="Search Youtube For Songs" onSubmit={term => this.handleSubmit(term)} />;
   }
 }
 

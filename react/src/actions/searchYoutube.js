@@ -1,7 +1,8 @@
 import axios from 'axios';
 
+export const SEARCH_YOUTUBE = 'SEARCH_YOUTUBE';
 
-import API_KEY from '../services/keys';
+const API_KEY = 'AIzaSyCogZgjBRNJ8jVLcZNdlLT077uukEmEH3Q';
 
 const getParams = term => ({
   part: 'snippet',
@@ -13,7 +14,6 @@ const getParams = term => ({
 
 const ROOT_URL = 'https://www.googleapis.com/youtube/v3/search';
 
-export const SEARCH_YOUTUBE = 'SEARCH_YOUTUBE';
 export default (term) => {
   const search = axios.get(ROOT_URL, { params: getParams(term) });
 

@@ -1,15 +1,16 @@
 import { combineReducers } from 'redux';
-import songListReducer from './songListReducer';
-import activeSongReducer from './activeSongReducer';
+import selectedMySongReducer from './selectedMySongReducer';
+import selectedYoutubeSongReducer from './selectedYoutubeSongReducer';
+import mySongsSearchReducer from './mySongsSearchReducer';
 import youtubeSearchReducer from './youtubeSearchReducer';
 
 // combineReducers essentially constructs our application state by
 //  merging the result of all reducers.
 const rootReducer = combineReducers({
-  songsToo: songListReducer,
-  selectedSong: activeSongReducer,
-  songs: youtubeSearchReducer,
-  // youtubeSearchResults: youtubeSearchReducer,
+  selectedSong: selectedMySongReducer,
+  selectedYoutubeSong: selectedYoutubeSongReducer,
+  youtubeSongs: youtubeSearchReducer,
+  mySongs: mySongsSearchReducer,
 });
 
 export default rootReducer;

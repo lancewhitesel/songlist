@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import { connect } from 'react-redux';
 
 const styles = theme => ({
   details: {
@@ -47,10 +46,4 @@ VideoDetail.defaultProps = {
   song: null,
 };
 
-function mapStateToProps(state) {
-  return {
-    song: state.selectedSong,
-  };
-}
-
-export default withStyles(styles)(connect(mapStateToProps)(VideoDetail));
+export default withStyles(styles)(VideoDetail);

@@ -47,12 +47,12 @@ class SearchBar extends Component {
   }
 
   render() {
-    const { classes: { searchBar, button }, onSubmit } = this.props;
+    const { classes: { searchBar, button }, onSubmit, placeholder } = this.props;
 
     return (
       <form onSubmit={e => this.handleSubmit(e, this.state.term)}>
         <Input
-          placeholder="Search For Songs"
+          placeholder={placeholder || 'Search For Songs'}
           className={searchBar}
           value={this.state.term}
           onChange={e => this.handleInputChange(e.target.value)}
@@ -67,11 +67,13 @@ SearchBar.propTypes = {
   classes: PropTypes.object.isRequired,
   onSearchTermChange: PropTypes.func,
   onSubmit: PropTypes.func,
+  placeholder: PropTypes.string,
 };
 
 SearchBar.defaultProps = {
   onSearchTermChange: DEFAULT_FN,
   onSubmit: DEFAULT_FN,
+  placeholder: null,
 };
 
 export default withStyles(styles)(SearchBar);
