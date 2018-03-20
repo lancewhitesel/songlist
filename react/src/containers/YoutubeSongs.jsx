@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import PropTypes from 'prop-types';
 
 import selectYoutubeSong from '../actions/selectYoutubeSong';
+import saveToMyList from '../actions/saveToMyList';
 
 import SongList from '../components/SongList';
 import VideoDetail from '../components/video/VideoDetail';
-import YoutubeSearch from '../components/search/YoutubeSearch';
+import YoutubeSearch from './YoutubeSearch';
 
 const styles = t => ({
   content: {
@@ -35,7 +35,11 @@ class YoutubeSongs extends Component {
         <YoutubeSearch starterTerm="contemporary christian" />
         <div className={content}>
           <VideoDetail song={selectedYoutubeSong} />
-          <SongList songs={youtubeSongs} onSelect={song => this.props.selectYoutubeSong(song)} />
+          <SongList
+            songs={youtubeSongs}
+            onSelect={song => this.props.selectYoutubeSong(song)}
+            onSaveToMyList={song => this.props.saveToMyList(song)}
+          />
         </div>
       </div>
     );
@@ -47,6 +51,7 @@ YoutubeSongs.propTypes = {
   youtubeSongs: PropTypes.array.isRequired,
   selectedYoutubeSong: PropTypes.object,
   selectYoutubeSong: PropTypes.func.isRequired,
+  saveToMyList: PropTypes.func.isRequired,
 };
 
 YoutubeSongs.defaultProps = {
@@ -57,12 +62,8 @@ function mapStateToProps({ youtubeSongs, selectedYoutubeSong }) {
   return { youtubeSongs, selectedYoutubeSong };
 }
 
-// Anything returned from this function will end up as props
-//   on the SongList container.
-function mapDispatchToProps(dispatch) {
-  // This wires up our selectSong action creator
-  //  to all of our reducers.
-  return bindActionCreators({ selectYoutubeSong }, dispatch);
-}
-
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(YoutubeSongs));
+const connectedComponent = connect(mapStateToProps, {
+  selectYoutubeSong,
+  saveToMyList,
+})(YoutubeSongs);
+export default withStyles(styles)(connectedComponent);

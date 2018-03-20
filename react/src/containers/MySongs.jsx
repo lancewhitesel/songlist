@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import PropTypes from 'prop-types';
 
 import selectMySong from '../actions/selectMySong';
+import fetchMySongs from '../actions/fetchMySongs';
 import searchMySongs from '../actions/searchMySongs';
 
 import SongList from '../components/SongList';
@@ -25,7 +25,7 @@ class MySongs extends Component {
   }
 
   componentWillMount() {
-    this.props.searchMySongs();
+    this.props.fetchMySongs();
   }
 
   render() {
@@ -52,6 +52,7 @@ MySongs.propTypes = {
   mySongs: PropTypes.array.isRequired,
   selectedSong: PropTypes.object,
   selectMySong: PropTypes.func.isRequired,
+  fetchMySongs: PropTypes.func.isRequired,
   searchMySongs: PropTypes.func.isRequired,
 };
 
@@ -64,8 +65,10 @@ function mapStateToProps({ mySongs, selectedSong }) {
   return { mySongs, selectedSong };
 }
 
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectMySong, searchMySongs }, dispatch);
-}
+const connectedComponent = connect(mapStateToProps, {
+  selectMySong,
+  fetchMySongs,
+  searchMySongs,
+})(MySongs);
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(MySongs));
+export default withStyles(styles)(connectedComponent);

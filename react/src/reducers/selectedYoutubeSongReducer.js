@@ -1,4 +1,4 @@
-import { YOUTUBE_SONG_SELECTED } from '../actions/selectYoutubeSong';
+import { YOUTUBE_SONG_SELECTED } from '../actions';
 
 // Start argument is not application state, but only the state for
 //  which this reducer is responsible.  Always return a fresh object

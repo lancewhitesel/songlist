@@ -1,4 +1,4 @@
-import { SEARCH_YOUTUBE } from '../actions/searchYoutube';
+import { SEARCH_YOUTUBE } from '../actions';
 
 export default function (state = [], action) {
   if (action.type === SEARCH_YOUTUBE) {

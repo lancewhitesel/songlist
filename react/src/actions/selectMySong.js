@@ -1,8 +1,6 @@
-// This is an ActionCreator, which needs to return an action.  An action
-//  will always contain a type and can optionally contain a payload.
-export const MY_SONG_SELECTED = 'MY_SONG_SELECTED';
+import { MY_SONG_SELECTED } from '.';
 
-export default function selectMySong(song, type) {
+export default function selectMySong(song) {
   // Here is the action.
   console.log('selecting my song: ', song);
   return {

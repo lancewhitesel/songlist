@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const SEARCH_YOUTUBE = 'SEARCH_YOUTUBE';
+import { SEARCH_YOUTUBE } from '.';
 
 const API_KEY = 'AIzaSyCogZgjBRNJ8jVLcZNdlLT077uukEmEH3Q';
 

@@ -1,4 +1,4 @@
-import { MY_SONG_SELECTED } from '../actions/selectMySong';
+import { MY_SONG_SELECTED } from '../actions';
 
 // Start argument is not application state, but only the state for
 //  which this reducer is responsible.  Always return a fresh object

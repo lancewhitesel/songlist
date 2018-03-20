@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 
-import searchYoutube from '../../actions/searchYoutube';
-import SearchBar from '../search/SearchBar';
+import searchYoutube from '../actions/searchYoutube';
+import SearchBar from '../components/search/SearchBar';
 
 class YoutubeSearch extends Component {
   componentWillMount() {

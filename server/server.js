@@ -6,7 +6,8 @@ const MongoClient = require('mongodb').MongoClient;
 const SONGS_COLLECTION = 'songs';
 
 const app = express();
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json({}));
+// app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('angularjs'));
 
 var db;
@@ -16,14 +17,18 @@ app.get('/', (req, res) => {
 });
 
 app.post('/song', (req, res) => {
+  console.log('song post data: ', req);
   console.log('song post data: ', req.body);
+  console.log('song post title: ', req.body.title);
 
   db.collection(SONGS_COLLECTION).save(req.body, (err, result) => {
     if (err) 
       return console.log(err);
 
     console.log('saved to database: ', req.body);
-    res.redirect('/')
+    db.collection(SONGS_COLLECTION).find().toArray(function(err, results) {
+      res.send(results);
+    })
   })
 });
 

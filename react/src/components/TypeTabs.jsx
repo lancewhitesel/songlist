@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import { withStyles } from 'material-ui/styles';
 import PropTypes from 'prop-types';
+
 import TextList from './text/TextList';
 import VideoList from './video/VideoList';
+import { DEFAULT_FN } from '../utils';
 
 const styles = theme => ({
   tabs: {
@@ -26,7 +28,12 @@ class TypeTabs extends Component {
 
   render() {
     const { value } = this.state;
-    const { onSelect, classes, songs } = this.props;
+    const {
+      onSelect,
+      onSaveToMyList,
+      classes,
+      songs,
+    } = this.props;
 
     return (
       <div>
@@ -34,7 +41,12 @@ class TypeTabs extends Component {
           <Tab label="Text" />
           <Tab label="Video" />
         </Tabs>
-        {value === 0 && <TextList songs={songs} onSelect={onSelect} />}
+        {value === 0 &&
+          <TextList
+            songs={songs}
+            onSelect={onSelect}
+            onSaveToMyList={onSaveToMyList}
+          />}
         {value === 1 && <VideoList songs={songs} onSelect={onSelect} />}
       </div>
     );
@@ -45,10 +57,12 @@ TypeTabs.propTypes = {
   songs: PropTypes.array.isRequired,
   classes: PropTypes.object.isRequired,
   onSelect: PropTypes.func,
+  onSaveToMyList: PropTypes.func,
 };
 
 TypeTabs.defaultProps = {
-  onSelect: () => {},
+  onSelect: DEFAULT_FN,
+  onSaveToMyList: null,
 };
 
 export default withStyles(styles)(TypeTabs);

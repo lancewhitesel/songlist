@@ -1,4 +1,4 @@
-export const SEARCH_MY_SONGS = 'SEARCH_MY_SONGS';
+import { SEARCH_MY_SONGS } from '.';
 
 export default term => ({
   type: SEARCH_MY_SONGS,

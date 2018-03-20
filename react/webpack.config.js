@@ -15,6 +15,12 @@ module.exports = {
     compress: true,
     port: 3000,
     // stats: "errors-only"
+    proxy: {
+      "/api": {
+        target: "http://localhost:3300",
+        pathRewrite: {"^/api" : ""}
+      }
+    }
   },
   resolve: {
     extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],

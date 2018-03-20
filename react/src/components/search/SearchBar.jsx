@@ -8,9 +8,9 @@ import DEFAULT_FN from '../../utils';
 
 const styles = theme => ({
   searchBar: {
-    margin: 20,
+    margin: 15,
     textAlign: 'center',
-    width: '75%',
+    width: '60%',
   },
   button: {
     margin: theme.spacing.unit,

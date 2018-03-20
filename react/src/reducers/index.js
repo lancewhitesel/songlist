@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import selectedMySongReducer from './selectedMySongReducer';
 import selectedYoutubeSongReducer from './selectedYoutubeSongReducer';
-import mySongsSearchReducer from './mySongsSearchReducer';
+import mySongsReducer from './mySongsReducer';
 import youtubeSearchReducer from './youtubeSearchReducer';
 
 // combineReducers essentially constructs our application state by
@@ -10,7 +10,7 @@ const rootReducer = combineReducers({
   selectedSong: selectedMySongReducer,
   selectedYoutubeSong: selectedYoutubeSongReducer,
   youtubeSongs: youtubeSearchReducer,
-  mySongs: mySongsSearchReducer,
+  mySongs: mySongsReducer,
 });
 
 export default rootReducer;

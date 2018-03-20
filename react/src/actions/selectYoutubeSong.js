@@ -1,4 +1,4 @@
-export const YOUTUBE_SONG_SELECTED = 'YOUTUBE_SONG_SELECTED';
+import { YOUTUBE_SONG_SELECTED } from '.';
 
 export default song => ({
   type: YOUTUBE_SONG_SELECTED,
