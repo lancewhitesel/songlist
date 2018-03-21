@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AppBar from 'material-ui/AppBar';
 import Tabs, { Tab } from 'material-ui/Tabs';
+import PropTypes from 'prop-types';
 
 class Navbar extends Component {
   constructor(props) {
@@ -10,6 +11,8 @@ class Navbar extends Component {
     this.state = {
       value: 0,
     };
+
+    this.props.history.replace('/mysongs');
   }
 
   handleChange(e, value) {
@@ -28,5 +31,9 @@ class Navbar extends Component {
     );
   }
 }
+
+Navbar.propTypes = {
+  history: PropTypes.object.isRequired,
+};
 
 export default Navbar;

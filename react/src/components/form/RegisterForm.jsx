@@ -5,7 +5,6 @@ import { withStyles } from 'material-ui/styles';
 import PropTypes from 'prop-types';
 
 import DefaultInput from './DefaultInput';
-import DEFAULT_FN from '../../utils';
 
 const styles = theme => ({
   paper: {
@@ -21,7 +20,7 @@ const styles = theme => ({
   },
 });
 
-class LoginForm extends Component {
+class RegisterForm extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -29,16 +28,36 @@ class LoginForm extends Component {
 
   render() {
     const { classes: { paper, button, btnContainer } } = this.props;
-    console.log('render login form...');
 
     return (
       <Formsy onValidSubmit={this.props.onSubmit}>
         <Paper elevation={1} className={paper}>
-          <h3>Log in</h3>
+          <h3>Registration form</h3>
           <DefaultInput
             onChange={(event) => { }}
             name="username"
-            title="Username (admin)"
+            title="Username"
+            required
+          />
+
+          <DefaultInput
+            onChange={(event) => { }}
+            name="firstName"
+            title="Firstname"
+            required
+          />
+
+          <DefaultInput
+            onChange={(event) => { }}
+            name="lastName"
+            title="Lastname"
+            required
+          />
+
+          <DefaultInput
+            onChange={(event) => { }}
+            name="email"
+            title="Email"
             required
           />
 
@@ -46,7 +65,7 @@ class LoginForm extends Component {
             onChange={(event) => { }}
             type="password"
             name="password"
-            title="Password (123456)"
+            title="Password"
             required
           />
 
@@ -57,7 +76,7 @@ class LoginForm extends Component {
               type="submit"
               className={button}
             >
-              Log In
+              Register
             </Button>
           </div>
         </Paper>
@@ -66,13 +85,9 @@ class LoginForm extends Component {
   }
 }
 
-LoginForm.propTypes = {
-  onSubmit: PropTypes.func,
+RegisterForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
 };
 
-LoginForm.defaultProps = {
-  onSubmit: DEFAULT_FN,
-};
-
-export default withStyles(styles)(LoginForm);
+export default withStyles(styles)(RegisterForm);

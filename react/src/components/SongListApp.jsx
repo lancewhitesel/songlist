@@ -11,17 +11,16 @@ import LoginView from '../views/LoginView';
 
 const SongListApp = props => (
   <SongListTheme>
-    {/* <BrowserRouter> */}
-    <div>
-      <Navbar />
-      <div className="container">
-        <Route path="/login" component={LoginView} />
-        <Route path="/youtube" component={YoutubeSongs} />
-        <Route path="/playlists" component={MyPlaylists} />
-        <Route path="/mysongs" component={MySongs} />
+    <BrowserRouter>
+      <div>
+        <Navbar {...props} />
+        <div className="container">
+          <Route path="/youtube" component={YoutubeSongs} />
+          <Route path="/playlists" component={MyPlaylists} />
+          <Route path="/mysongs" component={MySongs} />
+        </div>
       </div>
-    </div>
-    {/* </BrowserRouter> */}
+    </BrowserRouter>
   </SongListTheme>
 );
 

@@ -33,13 +33,13 @@ export const Song = mongoose.model('Song', songSchema);
 
 const USERS_COLLECTION = 'users';
 const userSchema = new Schema({
-  username: String,
+  username: { type: String, index: { unique: true, dropDups: true } },
   password: String,
   firstName: String,
   lastName: String,
-  email: String,
-  role: String,
-  verified: String,
+  email: { type: String, index: { unique: true, dropDups: true } },
+  role: { type: String, default: 'editor' },
+  verified: Boolean,
   imageUrl: String,
 }, {
   collection: USERS_COLLECTION

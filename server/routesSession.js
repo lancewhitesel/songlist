@@ -4,12 +4,14 @@ import jwtSecret from './jwtSecret';
 
 import { User } from './databaseConfig';
 
+const SALT_SUFFIX = 'songListApp';
+
 export default [{
   route: ['login'],
   call: (callPath, args) => {
     const { username, password } = args[0];
 
-    const saltedPassword = password + 'songListApp';
+    const saltedPassword = password + SALT_SUFFIX;
     const saltedPassHash = crypto.createHash('sha256')
                                  .update(saltedPassword)
                                  .digest('hex');
@@ -53,5 +55,51 @@ export default [{
 
       return result;
     });
+  }
+},
+{  
+  route: ['register'],
+  call: (callPath, args) => {
+    const newUserObj = args[0];
+    newUserObj.password = newUserObj.password + SALT_SUFFIX;
+    newUserObj.password = crypto
+      .createHash('sha256')
+      .update(newUserObj.password)
+      .digest('hex');
+
+    const newUser = new User(newUserObj);
+    return newUser.save().then((newRes) => {
+      // got new obj data, now let's get count: 
+      const newUserDetail = newRes.toObject();
+      const newUserId = newUserDetail._id.toString();
+
+      if (newUserDetail._id) {
+        return [{
+          path: ['register', 'newUserId'],
+          value: newUserId
+        }, {
+          path: ['register', 'error'],
+          value: false
+        }]; 
+      } else {
+        // registration failed
+        return [{
+          path: ['register', 'newUserId'],
+          value: 'INVALID'
+        }, {
+          path: ['register', 'error'],
+          value: 'Registration failed - no id has been created' 
+        }];
+      }
+    }).catch((reason) => {
+      console.error(reason)
+      return [{
+        path: ['register', 'newUserId'],
+        value: 'INVALID'
+      }, {
+        path: ['register', 'error'],
+        value: 'Registration failed - ' + reason.errmsg
+      }];
+    }); 
   }
 }];
