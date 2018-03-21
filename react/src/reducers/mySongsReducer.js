@@ -19,7 +19,8 @@ export default function (state = [], action) {
       return false;
     });
   } else if (action.type === FETCH_MY_SONGS) {
-    // console.log('fetch! ', action.payload);
+    console.log('fetch! ', action.payload);
+    /*
     songsCache = ((action.payload && action.payload.data) || []).map((s) => {
       const { _id, ...noUnderscoreId } = s; // eslint-disable-line no-underscore-dangle
       return {
@@ -27,7 +28,13 @@ export default function (state = [], action) {
         ...noUnderscoreId,
       };
     });
-    return songsCache.slice(0);
+    */
+    songsCache = (Object.values(action.payload) || []).map(s => ({
+      id: s.id,
+      title: s.title,
+      description: s.description,
+    })).filter(sToo => sToo.id);
+    return songsCache;
   } else if (action.type === SAVE_TO_MY_LIST) {
     console.log('after save to my list! ', action.payload);
   }

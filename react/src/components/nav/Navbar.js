@@ -20,7 +20,7 @@ class Navbar extends Component {
     return (
       <AppBar position="static">
         <Tabs value={this.state.value} onChange={(e, v) => this.handleChange(e, v)}>
-          <Tab label="Home" component={Link} to="/" />
+          <Tab label="Home" component={Link} to="/mysongs" />
           <Tab label="Search" component={Link} to="/youtube" />
           <Tab label="Play Lists" component={Link} to="playlists" />
         </Tabs>

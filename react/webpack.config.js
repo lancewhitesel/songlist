@@ -4,7 +4,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // const eslintFormatter = require('react-dev-utils/eslintFormatter');
 
 module.exports = {
-  entry: './src/app.js',
+  entry: ['babel-polyfill', './src/app.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'app.bundle.js'
@@ -19,6 +19,10 @@ module.exports = {
       "/api": {
         target: "http://localhost:3300",
         pathRewrite: {"^/api" : ""}
+      },
+      "/falcor": {
+        target: "http://localhost:3300",
+        pathRewrite: {"^/falcor" : ""}
       }
     }
   },

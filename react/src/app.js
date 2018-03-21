@@ -1,23 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReduxPromise from 'redux-promise';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
 
-import reducers from './reducers';
-import SongListApp from './components/SongListApp';
+import Root from './Root';
+import songListStore from './store/songListStore';
 
 // Keeping this around temporarily until I really grasp JSS
 require('./components/global.scss');
 
-const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
+const target = document.getElementById('root');
 
-function render() {
-  return (
-    <Provider store={createStoreWithMiddleware(reducers)}>
-      <SongListApp />
-    </Provider>
-  );
-}
+// This is for server-side rendering...
+const store = songListStore(window.__INITIAL_STATE__); // eslint-disable-line no-underscore-dangle
+export default store;
 
-ReactDOM.render(render(), document.getElementById('root'));
+const render = () => (
+  <Provider store={store}>
+    <Root store={store} />
+  </Provider>
+);
+
+const node = render();
+
+ReactDOM.render(node, target);

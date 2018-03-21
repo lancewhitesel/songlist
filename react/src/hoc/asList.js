@@ -8,7 +8,7 @@ export default (Component) => {
     <List>
       {songs.map(song => (
         <Component
-          key={song.id}
+          key={song.title}
           song={song}
           onSelect={onSelect}
           onSaveToMyList={onSaveToMyList}

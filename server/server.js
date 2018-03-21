@@ -1,17 +1,37 @@
-const express = require('express');
-const path = require('path');
-const bodyParser = require('body-parser');
-const MongoClient = require('mongodb').MongoClient;
+import http from 'http';
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors'
+import mongo from 'mongodb';
+import path from 'path';
+import falcor from 'falcor';
+import falcorExpress from 'falcor-express';
+import falcorRouter from 'falcor-router';
+import routes from './routes.js';
 
-const SONGS_COLLECTION = 'songs';
+const { MongoClient } = mongo;
 
 const app = express();
-app.use(bodyParser.json({}));
-// app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static('angularjs'));
+app.server = http.createServer(app);
 
-var db;
+// CORS - 3rd party middleware
+app.use(cors());
 
+// This is required by falcor-express middleware
+//  to work correctly with falcor-browser 
+app.use(bodyParser.json({extended: false}));
+app.use(bodyParser.urlencoded({extended: false}));
+
+app.use('/model.json', falcorExpress.dataSourceRoute((req, res) => {
+  return new falcorRouter(routes);
+}));
+
+// This is code that I was using for the angular version of the app.
+// app.use(express.static('angularjs'));
+// This is code that is used to support the React version of the server.
+app.use(express.static('react/dist'));
+
+// This is code that I was using for the angular version of the app.
 app.get('/', (req, res) => {
   res.sendFile(path.resolve('index.html'));
 });
@@ -39,6 +59,8 @@ app.get('/list', (req, res) => {
   })
 });
 
+/*
+ This code was from the original version of the server and supporting the angular client.
 const dbUrl = 'mongodb://lwadmin:lwadmin@ds137826.mlab.com:37826/lancewhitesel';
 MongoClient.connect(dbUrl, (err, database) => {
   // ... start the server
@@ -46,7 +68,14 @@ MongoClient.connect(dbUrl, (err, database) => {
   // for ( var x in db ) {
     // console.log(x + ': ' + db[x]);
   // }
-  app.listen('3300', () => {
+  app.listen(process.env.PORT || 3300, () => {
     console.log('Listening on port 3300...');
   });
 });
+*/
+
+app.listen(process.env.PORT || 3300, () => {
+  console.log('Listening on port 3300...');
+});
+
+export default app;
