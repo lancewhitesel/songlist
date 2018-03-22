@@ -32,7 +32,7 @@ class RegisterForm extends Component {
     return (
       <Formsy onValidSubmit={this.props.onSubmit}>
         <Paper elevation={1} className={paper}>
-          <h3>Registration form</h3>
+          <h3>Register</h3>
           <DefaultInput
             onChange={(event) => { }}
             name="username"

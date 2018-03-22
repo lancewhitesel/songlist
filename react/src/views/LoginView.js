@@ -16,11 +16,6 @@ const styles = theme => ({
     maxWidth: 450,
     margin: '0 auto',
   },
-  button: {
-    margin: '0 auto',
-    display: 'block',
-    width: 150,
-  },
 });
 
 class LoginView extends Component {
@@ -67,7 +62,7 @@ class LoginView extends Component {
 
   render() {
     const { classes: { button, loginContainer }, location } = this.props;
-    console.log('render!');
+    console.log('render 2!');
 
     const { from } = location.state || { from: { pathname: '/' } };
     const { redirectToReferrer } = this.state;
@@ -78,20 +73,8 @@ class LoginView extends Component {
 
     return (
       <div>
-        <h1>Login</h1>
         <div className={loginContainer}>
           <LoginForm onSubmit={this.login} />
-        </div>
-        <h1>OR</h1>
-        <div className={loginContainer}>
-          <Button
-            variant="raised"
-            color="secondary"
-            onClick={e => this.props.history.push('/register')}
-            className={button}
-          >
-            Register
-          </Button>
         </div>
         <Snackbar
           autoHideDuration={4000}
@@ -108,7 +91,6 @@ LoginView.propTypes = {
   classes: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   login: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => (

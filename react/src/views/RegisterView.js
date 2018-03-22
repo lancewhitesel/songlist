@@ -52,7 +52,6 @@ class RegisterView extends React.Component {
 
     return (
       <div>
-        <h1>Register</h1>
         <div className={registerContainer}>
           <RegisterForm
             onSubmit={this.register}
@@ -75,7 +74,7 @@ RegisterView.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  ...state
+  ...state,
 });
 // const mapDispatchToProps = (dispatch) => {};
 

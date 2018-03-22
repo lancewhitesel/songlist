@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import Root from './Root';
+import SongListApp from './components/SongListApp';
 import songListStore from './store/songListStore';
 
 // Keeping this around temporarily until I really grasp JSS
@@ -16,7 +16,7 @@ export default store;
 
 const render = () => (
   <Provider store={store}>
-    <Root store={store} />
+    <SongListApp />
   </Provider>
 );
 

@@ -12,12 +12,12 @@ const styles = theme => ({
     padding: 32,
   },
   btnContainer: {
-    marginTop: 24,
+    marginTop: 48,
   },
   button: {
     margin: '0 auto',
     display: 'block',
-    width: 150,
+    width: 120,
   },
 });
 
@@ -34,11 +34,11 @@ class LoginForm extends Component {
     return (
       <Formsy onValidSubmit={this.props.onSubmit}>
         <Paper elevation={1} className={paper}>
-          <h3>Log in</h3>
+          <h3>Log In</h3>
           <DefaultInput
             onChange={(event) => { }}
             name="username"
-            title="Username (admin)"
+            title="Username"
             required
           />
 
@@ -46,14 +46,14 @@ class LoginForm extends Component {
             onChange={(event) => { }}
             type="password"
             name="password"
-            title="Password (123456)"
+            title="Password"
             required
           />
 
           <div className={btnContainer}>
             <Button
               variant="raised"
-              color="secondary"
+              color="primary"
               type="submit"
               className={button}
             >

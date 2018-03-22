@@ -20,13 +20,16 @@ mongoose.connect(`mongodb://${config.hostname}:${config.port}/${config.env}`);
 
 const SONGS_COLLECTION = 'songs';
 const songSchema = new Schema({
+  id: String,
   title: String,
   artist: String,
   description: String,
   videoId: String,
   imageUrl: String,
+  songContentJSON: Object,
 }, {
   collection: SONGS_COLLECTION,
+  minimize: false,
 });
 export const Song = mongoose.model('Song', songSchema);
 
@@ -42,6 +45,6 @@ const userSchema = new Schema({
   verified: Boolean,
   imageUrl: String,
 }, {
-  collection: USERS_COLLECTION
+  collection: USERS_COLLECTION,
 });
 export const User = mongoose.model('User', userSchema);

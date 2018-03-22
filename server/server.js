@@ -23,7 +23,7 @@ app.use(bodyParser.json({extended: false}));
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use('/model.json', falcorExpress.dataSourceRoute((req, res) => {
-  return new falcorRouter(routes);
+  return new falcorRouter([].concat(routes(req, res)));
 }));
 
 // This is code that I was using for the angular version of the app.

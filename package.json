@@ -25,6 +25,7 @@
     "express": "^4.16.2",
     "falcor": "^2.0.0",
     "falcor-express": "^0.1.4",
+    "falcor-json-graph": "^2.2.1",
     "falcor-router": "^0.8.1",
     "jsonwebtoken": "^8.2.0",
     "mongodb": "^3.0.0-rc0",

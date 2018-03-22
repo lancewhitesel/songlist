@@ -2039,6 +2039,10 @@ falcor-json-graph@1.1.7:
   dependencies:
     falcor-path-syntax "0.2.4"
 
+falcor-json-graph@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/falcor-json-graph/-/falcor-json-graph-2.2.1.tgz#8e942df20d8996bf5623a227389d16c31947f943"
+
 falcor-path-syntax@0.2.4:
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/falcor-path-syntax/-/falcor-path-syntax-0.2.4.tgz#6e72ba0bc236f4dda73040a001652792a32d8fc8"
