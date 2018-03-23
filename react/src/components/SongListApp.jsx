@@ -12,8 +12,7 @@ import RegisterView from '../views/RegisterView';
 import MyPlaylists from '../containers/MyPlaylists';
 import MySongs from '../containers/MySongs';
 import YoutubeSongs from '../containers/YoutubeSongs';
-import LoginRoute from '../routes/LoginRoute';
-import PrivateRoute from '../routes/PrivateRoute';
+import DefaultRoute from '../routes/DefaultRoute';
 
 const SongListApp = props => (
   <SongListTheme>
@@ -28,7 +27,7 @@ const SongListApp = props => (
             {props.user && <Route path="/youtube" component={YoutubeSongs} />}
             {props.user && <Route path="/playlists" component={MyPlaylists} />}
             {props.user && <Route path="/mysongs" component={MySongs} />}
-            <Route component={PrivateRoute} path="/" />
+            <Route component={DefaultRoute} path="*" />
           </Switch>
         </div>
       </div>

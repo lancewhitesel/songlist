@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Falcor from 'falcor';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Redirect } from 'react-router-dom';
@@ -26,7 +25,15 @@ class LoginView extends Component {
     this.state = {
       redirectToReferrer: false,
       error: null,
+      defaultPath: props.defaultPath || '/mysongs',
     };
+  }
+
+  componentWillMount() {
+    if (localStorage && localStorage.token && localStorage.username && localStorage.role) {
+      this.setState({ redirectToReferrer: true });
+      this.props.login({ username: localStorage.username });
+    }
   }
 
   async login(credentials) {
@@ -53,23 +60,21 @@ class LoginView extends Component {
       localStorage.setItem('username', username);
       localStorage.setItem('role', role);
 
-      console.info('props: ', this.props);
-
       this.setState({ redirectToReferrer: true });
       this.props.login(credentials);
     }
   }
 
   render() {
-    console.log('renderooing');
     const { classes: { button, loginContainer }, location } = this.props;
-    console.log('location2: ', location);
-    let { from } = (location && location.state) || { from: { pathname: '/mysongs' } };
+    let { from } = (location && location.state) || this.state.defaultPath;
+    if (!from || (from && from.pathname === '/')) {
+      from = this.state.defaultPath;
+    }
+
     let { redirectToReferrer } = this.state;
     redirectToReferrer = !!this.props.user || redirectToReferrer;
 
-    from = '/mysongs';
-    console.log('from: ', this.state);
     if (redirectToReferrer) {
       return <Redirect to={from} />;
     }
@@ -95,10 +100,12 @@ LoginView.propTypes = {
   location: PropTypes.object.isRequired,
   login: PropTypes.func.isRequired,
   user: PropTypes.object,
+  defaultPath: PropTypes.string,
 };
 
 LoginView.defaultProps = {
   user: null,
+  defaultPath: null,
 };
 
 const mapStateToProps = state => (
