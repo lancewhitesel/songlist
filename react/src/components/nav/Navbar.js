@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { AppBar, Button } from 'material-ui';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import { withStyles } from 'material-ui/styles';
@@ -20,12 +20,19 @@ const styles = theme => ({
   },
 });
 
+const PATHS_TO_VALUE = {
+  '/mysongs': 0,
+  '/youtube': 1,
+  '/playlists': 2,
+};
+
 class Navbar extends Component {
   constructor(props) {
     super(props);
 
+    const { pathname } = props.location;
     this.state = {
-      value: 0,
+      value: PATHS_TO_VALUE[pathname],
     };
   }
 
@@ -65,7 +72,7 @@ class Navbar extends Component {
         <Tabs value={this.state.value} onChange={(e, v) => this.handleChange(e, v)}>
           <Tab label="Home" component={Link} to="/mysongs" />
           <Tab label="Search" component={Link} to="/youtube" />
-          <Tab label="Play Lists" component={Link} to="playlists" />
+          <Tab label="Play Lists" component={Link} to="/playlists" />
         </Tabs>
         <Link to="/logout" className={button}>
           <Button variant="raised">
@@ -80,6 +87,7 @@ class Navbar extends Component {
 Navbar.propTypes = {
   classes: PropTypes.object.isRequired,
   user: PropTypes.object,
+  location: PropTypes.object.isRequired,
 };
 
 Navbar.defaultProps = {
@@ -90,4 +98,4 @@ const mapStateToProps = ({ user }) => ({
   user,
 });
 
-export default withStyles(styles)(connect(mapStateToProps)(Navbar));
+export default withRouter(withStyles(styles)(connect(mapStateToProps)(Navbar)));

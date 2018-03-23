@@ -38,17 +38,17 @@ class TypeTabs extends Component {
     return (
       <div>
         <Tabs className={classes.tabs} onChange={this.handleChange} value={value}>
-          <Tab label="Text" />
           <Tab label="Video" />
+          <Tab label="Text" />
         </Tabs>
         {value === 0 &&
-          <TextList
+          <VideoList
             songs={songs}
             onSelect={onSelect}
             onSaveToMyList={onSaveToMyList}
           />}
         {value === 1 &&
-          <VideoList
+          <TextList
             songs={songs}
             onSelect={onSelect}
             onSaveToMyList={onSaveToMyList}
