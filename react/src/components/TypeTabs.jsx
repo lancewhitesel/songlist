@@ -47,7 +47,12 @@ class TypeTabs extends Component {
             onSelect={onSelect}
             onSaveToMyList={onSaveToMyList}
           />}
-        {value === 1 && <VideoList songs={songs} onSelect={onSelect} />}
+        {value === 1 &&
+          <VideoList
+            songs={songs}
+            onSelect={onSelect}
+            onSaveToMyList={onSaveToMyList}
+          />}
       </div>
     );
   }

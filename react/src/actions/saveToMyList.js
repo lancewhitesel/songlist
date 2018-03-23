@@ -3,9 +3,10 @@ import falcorModel from '../model/falcorModel';
 
 async function saveSong(song) {
   const newSong = {
-    id: '7',
     title: song.title,
     description: song.description,
+    videoId: song.videoId,
+    imageUrl: song.imageUrl,
   };
 
   const newSongID = await falcorModel

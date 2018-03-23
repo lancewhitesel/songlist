@@ -20,23 +20,20 @@ const SongListRoutes = [
     }
   },
   {
-    route: 'songsById[{keys}]["id","title","description"]',
+    route: 'songsById[{keys}]["_id","title","artist","description","videoId","imageUrl"]',
     get: (pathSet) => {
-      console.log('songs by id! ', pathSet);
       const songIDs = pathSet[1];
       return Song.find({
-        'id':
+        '_id':
           { $in: songIDs }
       }, (err, songDocs) => {
         return songDocs;
       }).then((songsArrayFromDB) => {
-      console.log('songs by id! array: ', songsArrayFromDB);
         let results = [];
 
         songsArrayFromDB.map((song) => {
           let songResObj = song.toObject();
-          let currentIdString = String(songResObj['id']);
-      console.log('songs by id! currentIdStr: ', currentIdString);
+          let currentIdString = String(songResObj['_id']);
 
           results.push({
             path: ['songsById', currentIdString],
@@ -51,13 +48,14 @@ const SongListRoutes = [
   {
     route: 'songs[{integers}]',
     get: (pathSet) => {
+      console.log('songs!');
       const songsIndex = pathSet[1];
-      return Song.find({}, 'id', (err, songDocs) => songDocs).then(
+      return Song.find({}, '_id', (err, songDocs) => songDocs).then(
         (songsArrayFromDB) => {
           const results = [];
           songsIndex.forEach((index) => {
             const s = songsArrayFromDB[index];
-            const currentID = String(songsArrayFromDB[index]['id']);
+            const currentID = String(songsArrayFromDB[index]['_id']);
             const songRef = $ref(['songsById', currentID]);
             const falcorSongResult = {
               path: ['songs', index],
@@ -83,14 +81,11 @@ const SongListRoutes = [
         }); 
       }).then ((res) => { 
         const newSongDetail = res.data.toObject(); 
-        const newSongID = String(newSongDetail['id']); 
+        const newSongID = String(newSongDetail['_id']); 
         const newSongRef = $ref(['songsById', newSongID]); 
         const results = [{ 
           path: ['songs', res.count-1], 
           value: newSongRef 
-        }, { 
-          path: ['songs', 'newSongID'], 
-          value: newSongID 
         }, { 
           path: ['songs', 'newSongID'], 
           value: newSongID 

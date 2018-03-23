@@ -16,17 +16,14 @@ const conf = {
 */
 
 mongoose.connect(`mongodb://${config.hostname}:${config.port}/${config.env}`);
-// mongoose.connect('mongodb://lwadmin:lwadmin@ds137826.mlab.com:37826/lancewhitesel');
 
 const SONGS_COLLECTION = 'songs';
 const songSchema = new Schema({
-  id: String,
   title: String,
   artist: String,
   description: String,
   videoId: String,
   imageUrl: String,
-  songContentJSON: Object,
 }, {
   collection: SONGS_COLLECTION,
   minimize: false,
