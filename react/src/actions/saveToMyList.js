@@ -14,7 +14,23 @@ async function saveSong(song) {
 
   const newSongID = await falcorModel
     .call('songs.add', [newSong])
-    .then(result => falcorModel.getValue(['songs', 'newSongID']).then(songID => songID));
+    .then((result) => {
+      console.log('results: ', result);
+      falcorModel.getValue(['songs', 'newSongID']).then(songID => songID);
+    });
+
+  /*
+  const results = [{
+  path: ['songs', res.count-1],
+  value: newSongRef
+  }, {
+  path: ['songs', 'newSongID'],
+  value: newSongID
+  }, {
+  path: ['songs', 'length'],
+  value: res.count
+  }];
+  */
 
   newSong.id = newSongID;
   console.log('newSong: ', newSong);

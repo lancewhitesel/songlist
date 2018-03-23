@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { AppBar, Button } from 'material-ui';
 import Tabs, { Tab } from 'material-ui/Tabs';
@@ -25,27 +26,17 @@ class Navbar extends Component {
 
     this.state = {
       value: 0,
-      userLoggedIn: localStorage && localStorage.token && localStorage.username,
     };
-
-    // this.props.history.replace('/mysongs');
   }
 
   handleChange(e, value) {
     this.setState({ value });
   }
 
-  handleLogout() {
-    this.setState({ userLoggedIn: false });
-  }
-
   render() {
-    this.setState = {
-      userLoggedIn: localStorage && localStorage.token && localStorage.username,
-    };
+    const { classes: { appBar, button }, user } = this.props;
 
-    const { classes: { appBar, button } } = this.props;
-    if (!this.state.userLoggedIn) {
+    if (!user) {
       return (
         <AppBar position="static" className={appBar}>
           <Link to="/" component="div">
@@ -77,10 +68,7 @@ class Navbar extends Component {
           <Tab label="Play Lists" component={Link} to="playlists" />
         </Tabs>
         <Link to="/logout" className={button}>
-          <Button
-            variant="raised"
-            onClick={e => this.handleLogout()}
-          >
+          <Button variant="raised">
             Logout
           </Button>
         </Link>
@@ -90,8 +78,16 @@ class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-  // history: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
+  user: PropTypes.object,
 };
 
-export default withStyles(styles)(Navbar);
+Navbar.defaultProps = {
+  user: null,
+};
+
+const mapStateToProps = ({ user }) => ({
+  user,
+});
+
+export default withStyles(styles)(connect(mapStateToProps)(Navbar));

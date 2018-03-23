@@ -61,12 +61,15 @@ class LoginView extends Component {
   }
 
   render() {
+    console.log('renderooing');
     const { classes: { button, loginContainer }, location } = this.props;
-    console.log('render 2!');
+    console.log('location2: ', location);
+    let { from } = (location && location.state) || { from: { pathname: '/mysongs' } };
+    let { redirectToReferrer } = this.state;
+    redirectToReferrer = !!this.props.user || redirectToReferrer;
 
-    const { from } = location.state || { from: { pathname: '/' } };
-    const { redirectToReferrer } = this.state;
-
+    from = '/mysongs';
+    console.log('from: ', this.state);
     if (redirectToReferrer) {
       return <Redirect to={from} />;
     }
@@ -91,6 +94,11 @@ LoginView.propTypes = {
   classes: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   login: PropTypes.func.isRequired,
+  user: PropTypes.object,
+};
+
+LoginView.defaultProps = {
+  user: null,
 };
 
 const mapStateToProps = state => (

@@ -1,11 +1,12 @@
-import { LOGIN } from '../actions';
+import { LOGIN, LOGOUT } from '../actions';
 
 export default function (state = null, action) {
   if (action.type === LOGIN) {
-    console.log('login reducer! ', action.payload);
     return {
       user: action.payload.username,
     };
+  } else if (action.type === LOGOUT) {
+    return null;
   }
 
   return state;

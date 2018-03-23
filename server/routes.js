@@ -54,20 +54,15 @@ const SongListRoutes = [
       const songsIndex = pathSet[1];
       return Song.find({}, 'id', (err, songDocs) => songDocs).then(
         (songsArrayFromDB) => {
-          console.log('songs from array: ', songsArrayFromDB);
           const results = [];
           songsIndex.forEach((index) => {
             const s = songsArrayFromDB[index];
-            console.log('s: ', s);
-            console.log('s.id: ', s['id']);
             const currentID = String(songsArrayFromDB[index]['id']);
-            console.log('currrent id: ', currentID);
             const songRef = $ref(['songsById', currentID]);
             const falcorSongResult = {
               path: ['songs', index],
               value: songRef,
             };
-            console.log('song ref: ', songRef);
             results.push(falcorSongResult);
           });
 
@@ -93,6 +88,9 @@ const SongListRoutes = [
         const results = [{ 
           path: ['songs', res.count-1], 
           value: newSongRef 
+        }, { 
+          path: ['songs', 'newSongID'], 
+          value: newSongID 
         }, { 
           path: ['songs', 'newSongID'], 
           value: newSongID 
