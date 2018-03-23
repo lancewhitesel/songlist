@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import PropTypes from 'prop-types';
 
-import falcorModel from '../model/falcorModel';
-
 import selectMySong from '../actions/selectMySong';
 import fetchMySongs from '../actions/fetchMySongs';
 import searchMySongs from '../actions/searchMySongs';
@@ -27,20 +25,7 @@ class MySongs extends Component {
   }
 
   componentWillMount() {
-    this.fetchMySongs();
-  }
-
-  async fetchMySongs() {
-    const x = this;
-    const numberSongs = await falcorModel.getValue('songs.length').then(length => length);
-    console.log('number songs! ', numberSongs);
-    const songs = await falcorModel.get(['songs',
-      { from: 0, to: numberSongs - 1 },
-      ['id', 'title', 'description']])
-      .then(songResponse => songResponse.json.songs);
-
-    console.log('songs here: ', songs);
-    this.props.fetchMySongs(songs);
+    this.props.fetchMySongs();
   }
 
   render() {

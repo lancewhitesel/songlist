@@ -1,5 +1,6 @@
 import { FETCH_MY_SONGS, SEARCH_MY_SONGS, SAVE_TO_MY_LIST } from '../actions';
 
+/*
 const fakeData = [
   { id: '1', title: 'Who You Say I Am' },
   { id: '2', title: 'Our God' },
@@ -7,8 +8,9 @@ const fakeData = [
   { id: '4', title: 'Desert Song' },
   { id: '5', title: 'Cornerstone' },
 ];
+*/
 
-let songsCache = null;
+let songsCache = [];
 export default function (state = [], action) {
   if (action.type === SEARCH_MY_SONGS) {
     const term = action.payload && action.payload.toLowerCase();
@@ -19,7 +21,6 @@ export default function (state = [], action) {
       return false;
     });
   } else if (action.type === FETCH_MY_SONGS) {
-    console.log('fetch! ', action.payload);
     /*
     songsCache = ((action.payload && action.payload.data) || []).map((s) => {
       const { _id, ...noUnderscoreId } = s; // eslint-disable-line no-underscore-dangle
@@ -34,9 +35,10 @@ export default function (state = [], action) {
       title: s.title,
       description: s.description,
     })).filter(sToo => sToo.id);
+
     return songsCache;
   } else if (action.type === SAVE_TO_MY_LIST) {
-    console.log('after save to my list! ', action.payload);
+    // console.debug('after save to my list! ', action.payload);
   }
 
   return state;

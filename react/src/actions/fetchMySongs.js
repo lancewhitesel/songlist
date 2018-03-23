@@ -1,15 +1,19 @@
-// import axios from 'axios';
-
 import { FETCH_MY_SONGS } from '.';
+import falcorModel from '../model/falcorModel';
 
-// const ROOT_URL = '/api/list';
+async function fetchSongData() {
+  const numberSongs = await falcorModel.getValue('songs.length').then(length => length);
+  const songs = await falcorModel.get(['songs',
+    { from: 0, to: numberSongs - 1 },
+    ['id', 'title', 'description']])
+    .then(songResponse => songResponse.json.songs);
 
-export default function fetchMySongs(songs) {
-  // const fetch = axios.get(ROOT_URL, {});
+  return songs;
+}
 
+export default function fetchMySongs() {
   return {
     type: FETCH_MY_SONGS,
-    // payload: fetch,
-    payload: songs,
+    payload: fetchSongData(),
   };
 }

@@ -14,10 +14,6 @@ const styles = theme => ({
 });
 
 class LogoutView extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillMount() {
     this.props.logout();
   }

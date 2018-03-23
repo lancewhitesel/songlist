@@ -1,12 +1,11 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Snackbar } from 'material-ui';
 import { withStyles } from 'material-ui/styles';
 import PropTypes from 'prop-types';
 
 import RegisterForm from '../components/form/RegisterForm';
-import falcorModel from '../model/falcorModel';
+import register from '../actions/register';
 
 const styles = theme => ({
   registerContainer: {
@@ -23,27 +22,20 @@ const styles = theme => ({
 class RegisterView extends React.Component {
   constructor(props) {
     super(props);
-    this.register = this.register.bind(this);
+
     this.state = {
       error: null,
     };
   }
 
-  async register(newUserModel) {
-    console.info('newUserModel ', newUserModel);
-
-    await falcorModel
-      .call(['register'], [newUserModel])
-      .then(result => result);
-
-    const newUserId = await falcorModel.getValue(['register', 'newUserId']);
-
-    if (newUserId === 'INVALID') {
-      const errorRes = await falcorModel.getValue('register.error');
-
-      this.setState({ error: errorRes });
-    } else if (newUserId) {
-      this.props.history.push('/login');
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.registration) {
+      if (nextProps.registration.registrationError) {
+        this.setState({ error: nextProps.registration.registrationError });
+      } else if (nextProps.registration.registrationSuccess) {
+        this.props.history.push('/login');
+        this.props.register();
+      }
     }
   }
 
@@ -54,7 +46,7 @@ class RegisterView extends React.Component {
       <div>
         <div className={registerContainer}>
           <RegisterForm
-            onSubmit={this.register}
+            onSubmit={this.props.register}
           />
         </div>
         <Snackbar
@@ -71,11 +63,16 @@ class RegisterView extends React.Component {
 RegisterView.propTypes = {
   classes: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
+  registration: PropTypes.object,
+  register: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-  ...state,
-});
-// const mapDispatchToProps = (dispatch) => {};
+RegisterView.defaultProps = {
+  registration: null,
+};
 
-export default withStyles(styles)(connect(mapStateToProps)(RegisterView));
+const mapStateToProps = ({ registration }) => ({
+  registration,
+});
+
+export default withStyles(styles)(connect(mapStateToProps, { register })(RegisterView));

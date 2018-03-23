@@ -29,7 +29,6 @@ class LoginForm extends Component {
 
   render() {
     const { classes: { paper, button, btnContainer } } = this.props;
-    console.log('render login form...');
 
     return (
       <Formsy onValidSubmit={this.props.onSubmit}>
