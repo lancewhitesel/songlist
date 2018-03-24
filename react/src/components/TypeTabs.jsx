@@ -31,6 +31,7 @@ class TypeTabs extends Component {
     const {
       onSelect,
       onSaveToMyList,
+      onRemoveFromMyList,
       classes,
       songs,
     } = this.props;
@@ -46,12 +47,14 @@ class TypeTabs extends Component {
             songs={songs}
             onSelect={onSelect}
             onSaveToMyList={onSaveToMyList}
+            onRemoveFromMyList={onRemoveFromMyList}
           />}
         {value === 1 &&
           <TextList
             songs={songs}
             onSelect={onSelect}
             onSaveToMyList={onSaveToMyList}
+            onRemoveFromMyList={onRemoveFromMyList}
           />}
       </div>
     );
@@ -63,11 +66,13 @@ TypeTabs.propTypes = {
   classes: PropTypes.object.isRequired,
   onSelect: PropTypes.func,
   onSaveToMyList: PropTypes.func,
+  onRemoveFromMyList: PropTypes.func,
 };
 
 TypeTabs.defaultProps = {
   onSelect: DEFAULT_FN,
   onSaveToMyList: null,
+  onRemoveFromMyList: null,
 };
 
 export default withStyles(styles)(TypeTabs);

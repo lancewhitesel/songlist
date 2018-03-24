@@ -62,7 +62,12 @@ MySongs.defaultProps = {
 
 
 function mapStateToProps({ mySongs, selectedSong }) {
-  return { mySongs, selectedSong };
+  const mySongsArr = Object.values(mySongs || {}).map(s => s);
+
+  return {
+    mySongs: mySongsArr,
+    selectedSong,
+  };
 }
 
 const connectedComponent = connect(mapStateToProps, {

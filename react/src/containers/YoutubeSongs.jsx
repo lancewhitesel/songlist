@@ -1,10 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { withStyles } from 'material-ui/styles';
 import PropTypes from 'prop-types';
 
 import selectYoutubeSong from '../actions/selectYoutubeSong';
 import saveToMyList from '../actions/saveToMyList';
+import removeFromMyList from '../actions/removeFromMyList';
 
 import SongList from '../components/SongList';
 import VideoDetail from '../components/video/VideoDetail';
@@ -17,34 +18,28 @@ const styles = t => ({
   },
 });
 
-class YoutubeSongs extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+const YoutubeSongs = (props) => {
+  const {
+    classes: { content },
+    youtubeSongs,
+    selectedYoutubeSong,
+  } = props;
 
-  render() {
-    const {
-      classes: { content },
-      youtubeSongs,
-      selectedYoutubeSong,
-    } = this.props;
-
-    return (
-      <div>
-        <YoutubeSearch starterTerm="contemporary christian" />
-        <div className={content}>
-          <VideoDetail song={selectedYoutubeSong} />
-          <SongList
-            songs={youtubeSongs}
-            onSelect={song => this.props.selectYoutubeSong(song)}
-            onSaveToMyList={song => this.props.saveToMyList(song)}
-          />
-        </div>
+  return (
+    <div>
+      <YoutubeSearch starterTerm="contemporary christian" />
+      <div className={content}>
+        <VideoDetail song={selectedYoutubeSong} />
+        <SongList
+          songs={youtubeSongs}
+          onSelect={song => props.selectYoutubeSong(song)}
+          onSaveToMyList={song => props.saveToMyList(song)}
+          onRemoveFromMyList={song => props.removeFromMyList(song)}
+        />
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 YoutubeSongs.propTypes = {
   classes: PropTypes.object.isRequired,
@@ -52,18 +47,39 @@ YoutubeSongs.propTypes = {
   selectedYoutubeSong: PropTypes.object,
   selectYoutubeSong: PropTypes.func.isRequired,
   saveToMyList: PropTypes.func.isRequired,
+  removeFromMyList: PropTypes.func.isRequired,
 };
 
 YoutubeSongs.defaultProps = {
   selectedYoutubeSong: {},
 };
 
-function mapStateToProps({ youtubeSongs, selectedYoutubeSong }) {
-  return { youtubeSongs, selectedYoutubeSong };
+function mapStateToProps({ mySongs, youtubeSongs, selectedYoutubeSong }) {
+  const markedYouTubeSongs = youtubeSongs.map((s) => {
+    const isInMySongs = !!mySongs[s.videoId];
+    const initialData = {
+      isInMySongs,
+    };
+    if (isInMySongs) {
+      initialData.id = mySongs[s.videoId].id;
+    }
+
+    return {
+      ...s,
+      ...initialData,
+    };
+  });
+
+  return {
+    youtubeSongs: markedYouTubeSongs,
+    selectedYoutubeSong,
+  };
 }
 
 const connectedComponent = connect(mapStateToProps, {
   selectYoutubeSong,
   saveToMyList,
+  removeFromMyList,
 })(YoutubeSongs);
+
 export default withStyles(styles)(connectedComponent);

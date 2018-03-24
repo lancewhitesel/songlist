@@ -97,9 +97,23 @@ const SongListRoutes = [
         return results; 
       }).catch((reason) => {
         console.error(reason)
-        return err; 
+        return reason;
       }); 
     } 
+  },
+  {
+    route: 'songs.remove',
+    call: (callPath, args) => {
+      const songId = args[0];
+      return Song.find({ _id: songId }).remove()
+        .then((res) => {
+          return Song.count({}, (err, count) => count).then(
+            songsCountInDB => ({
+              path: ['songs', 'length'],
+              value: songsCountInDB,
+            }));
+        });
+    }
   }];
 
 export default (req, res) => {

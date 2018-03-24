@@ -14,9 +14,7 @@ async function fetchSongData() {
   return songs;
 }
 
-export default function fetchMySongs() {
-  return {
-    type: FETCH_MY_SONGS,
-    payload: fetchSongData(),
-  };
-}
+export default () => ({
+  type: FETCH_MY_SONGS,
+  payload: fetchSongData(),
+});
