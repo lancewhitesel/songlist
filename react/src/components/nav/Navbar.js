@@ -24,6 +24,7 @@ const PATHS_TO_VALUE = {
   '/mysongs': 0,
   '/youtube': 1,
   '/playlists': 2,
+  '/addplaylist': 2,
 };
 
 class Navbar extends Component {

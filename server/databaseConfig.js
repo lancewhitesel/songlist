@@ -31,6 +31,17 @@ const songSchema = new Schema({
 export const Song = mongoose.model('Song', songSchema);
 
 
+const PLAYLISTS_COLLECTION = 'playlists';
+const playlistSchema = new Schema({
+  title: String,
+  description: String,
+}, {
+  collection: PLAYLISTS_COLLECTION,
+  minimize: false,
+});
+export const Playlist = mongoose.model('Playlist', playlistSchema);
+
+
 const USERS_COLLECTION = 'users';
 const userSchema = new Schema({
   username: { type: String, index: { unique: true, dropDups: true } },

@@ -8,4 +8,7 @@ export const REMOVE_FROM_MY_LIST = 'REMOVE_FROM_MY_LIST';
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
 export const REGISTER = 'REGISTER';
-
+export const FETCH_MY_PLAYLISTS = 'FETCH_MY_PLAYLISTS';
+export const SELECT_PLAYLIST = 'SELECT_PLAYLIST';
+export const PLAYLIST_SELECTED = 'PLAYLIST_SELECTED';
+export const CREATE_PLAYLIST = 'CREATE_PLAYLIST';

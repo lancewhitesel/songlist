@@ -72,7 +72,7 @@ SearchBar.propTypes = {
 
 SearchBar.defaultProps = {
   onSearchTermChange: DEFAULT_FN,
-  onSubmit: DEFAULT_FN,
+  onSubmit: null,
   placeholder: null,
 };
 
