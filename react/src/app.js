@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 
-import SongListApp from './components/SongListApp';
+import SongListApp from './containers/SongListApp';
 import songListStore from './store/songListStore';
 
 // Keeping this around temporarily until I really grasp JSS

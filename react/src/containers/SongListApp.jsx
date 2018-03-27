@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Navbar from './nav/Navbar';
-import SongListTheme from './SongListTheme';
+import Navbar from '../components/nav/Navbar';
+import SongListTheme from '../components/SongListTheme';
 
 import LoginView from '../views/LoginView';
 import LogoutView from '../views/LogoutView';
