@@ -5,7 +5,8 @@ import { AppBar, Button } from 'material-ui';
 import Tabs, { Tab } from 'material-ui/Tabs';
 import { withStyles } from 'material-ui/styles';
 import Home from 'material-ui-icons/Home';
-import PropTypes from 'prop-types';
+
+import { LocationType, ClassesType, UserType } from '../../types';
 
 const styles = theme => ({
   appBar: {
@@ -86,9 +87,9 @@ class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  user: PropTypes.objectOf(PropTypes.string),
-  location: PropTypes.objectOf(PropTypes.string).isRequired,
+  classes: ClassesType.isRequired,
+  user: UserType,
+  location: LocationType.isRequired,
 };
 
 Navbar.defaultProps = {

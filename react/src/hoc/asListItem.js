@@ -6,7 +6,8 @@ import LibraryAddIcon from 'material-ui-icons/LibraryAdd';
 import LibraryMusicIcon from 'material-ui-icons/LibraryMusic';
 import { withStyles } from 'material-ui/styles';
 
-import { DEFAULT_FN } from '../utils';
+import DEFAULT_FN from '../utils';
+import { ClassesType, SongType } from '../types';
 
 const styles = theme => ({
   button: {
@@ -58,8 +59,8 @@ export default (render) => {
     onSaveToMyList: PropTypes.func,
     onRemoveFromMyList: PropTypes.func,
     onSelect: PropTypes.func,
-    song: PropTypes.objectOf(PropTypes.string),
-    classes: PropTypes.objectOf(PropTypes.string).isRequired,
+    song: SongType,
+    classes: ClassesType.isRequired,
   };
 
   ListItemComponent.defaultProps = {

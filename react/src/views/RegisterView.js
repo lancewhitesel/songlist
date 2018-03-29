@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 import RegisterForm from '../components/form/RegisterForm';
 import register from '../actions/register';
+import { ClassesType, HistoryType, RegistrationType } from '../types';
 
 const styles = theme => ({
   registerContainer: {
@@ -61,12 +62,9 @@ class RegisterView extends React.Component {
 }
 
 RegisterView.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  history: PropTypes.objectOf(PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.func,
-  ])).isRequired,
-  registration: PropTypes.objectOf(PropTypes.string),
+  classes: ClassesType.isRequired,
+  history: HistoryType.isRequired,
+  registration: RegistrationType,
   register: PropTypes.func.isRequired,
 };
 

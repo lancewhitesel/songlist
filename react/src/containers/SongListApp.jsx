@@ -15,6 +15,7 @@ import MyPlaylists from '../containers/MyPlaylists';
 import AddPlaylist from '../containers/AddPlaylist';
 import DefaultRoute from '../routes/DefaultRoute';
 import fetchMySongs from '../actions/fetchMySongs';
+import { UserType } from '../types';
 
 class SongListApp extends Component {
   componentWillMount() {
@@ -47,7 +48,7 @@ class SongListApp extends Component {
 }
 
 SongListApp.propTypes = {
-  user: PropTypes.objectOf(PropTypes.string),
+  user: UserType,
   fetchMySongs: PropTypes.func.isRequired,
 };
 

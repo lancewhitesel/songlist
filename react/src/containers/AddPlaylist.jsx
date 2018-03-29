@@ -9,6 +9,7 @@ import Button from 'material-ui/Button';
 import { Link } from 'react-router-dom';
 
 import createPlaylist from '../actions/createPlaylist';
+import { ClassesType, HistoryType } from '../types';
 
 const styles = t => ({
   inputContainer: {
@@ -88,13 +89,10 @@ function validate(values) {
 }
 
 AddPlaylist.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  classes: ClassesType.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   createPlaylist: PropTypes.func.isRequired,
-  history: PropTypes.objectOf(PropTypes.oneOfType([
-    PropTypes.node,
-    PropTypes.func,
-  ])).isRequired,
+  history: HistoryType.isRequired,
 };
 
 const formedComponent = reduxForm({

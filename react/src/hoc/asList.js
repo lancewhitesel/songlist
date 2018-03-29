@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import List from 'material-ui/List';
-import { DEFAULT_FN } from '../utils';
+import DEFAULT_FN from '../utils';
+import { SongListType } from '../types';
 
 export default (Component) => {
   const ListComponent = ({
@@ -20,7 +21,7 @@ export default (Component) => {
   );
 
   ListComponent.propTypes = {
-    songs: PropTypes.arrayOf(PropTypes.object),
+    songs: SongListType,
     onSelect: PropTypes.func,
     onSaveToMyList: PropTypes.func,
     onRemoveFromMyList: PropTypes.func,

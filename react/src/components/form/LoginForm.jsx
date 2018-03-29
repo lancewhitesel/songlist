@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 import DefaultInput from './DefaultInput';
 import DEFAULT_FN from '../../utils';
+import { ClassesType } from '../../types';
 
 const styles = theme => ({
   paper: {
@@ -67,7 +68,7 @@ class LoginForm extends Component {
 
 LoginForm.propTypes = {
   onSubmit: PropTypes.func,
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  classes: ClassesType.isRequired,
 };
 
 LoginForm.defaultProps = {

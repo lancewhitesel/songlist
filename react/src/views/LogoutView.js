@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 
 import logout from '../actions/logout';
+import { ClassesType, UserType } from '../types';
 
 const styles = theme => ({
-  toast: {
+  root: {
     width: 400,
     margin: 'auto',
   },
@@ -24,7 +25,7 @@ class LogoutView extends Component {
     }
 
     return (
-      <div className={this.props.classes.toast}>
+      <div className={this.props.classes.root}>
         <Paper elevation={3} style={{ padding: 32, margin: 32 }}>
           Logout successful.
         </Paper>
@@ -34,9 +35,9 @@ class LogoutView extends Component {
 }
 
 LogoutView.propTypes = {
-  user: PropTypes.objectOf(PropTypes.string),
+  user: UserType,
   logout: PropTypes.func.isRequired,
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  classes: ClassesType.isRequired,
 };
 
 LogoutView.defaultProps = {

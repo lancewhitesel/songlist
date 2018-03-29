@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import TextField from 'material-ui/TextField';
 import { withFormsy } from 'formsy-react';
 
-import DEFAULT_FN, { CHILDREN_TYPE } from '../../utils';
+import DEFAULT_FN from '../../utils';
+import { ChildrenType } from '../../types';
 
 class DefaultInput extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class DefaultInput extends Component {
 }
 
 DefaultInput.propTypes = {
-  children: CHILDREN_TYPE,
+  children: ChildrenType,
   required: PropTypes.bool,
   name: PropTypes.string,
   value: PropTypes.string,

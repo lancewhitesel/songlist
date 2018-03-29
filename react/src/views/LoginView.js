@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 
 import LoginForm from '../components/form/LoginForm';
 import login from '../actions/login';
+import { ClassesType, LocationType } from '../types';
 
 const styles = theme => ({
   loginContainer: {
@@ -73,8 +74,8 @@ class LoginView extends Component {
 }
 
 LoginView.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  location: PropTypes.objectOf(PropTypes.string).isRequired,
+  classes: ClassesType.isRequired,
+  location: LocationType.isRequired,
   login: PropTypes.func.isRequired,
   user: PropTypes.objectOf(PropTypes.string),
   defaultPath: PropTypes.string,

@@ -1,6 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
+
+import { ClassesType, SongType } from '../../types';
 
 const styles = theme => ({
   details: {
@@ -38,8 +39,8 @@ const VideoDetail = ({ song, classes }) => {
 };
 
 VideoDetail.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  song: PropTypes.objectOf(PropTypes.string),
+  classes: ClassesType.isRequired,
+  song: SongType,
 };
 
 VideoDetail.defaultProps = {

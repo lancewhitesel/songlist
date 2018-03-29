@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Input from 'material-ui/Input';
 import Button from 'material-ui/Button';
 import DEFAULT_FN from '../../utils';
+import { ClassesType } from '../../types';
 
 const styles = theme => ({
   searchBar: {
@@ -64,7 +65,7 @@ class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  classes: ClassesType.isRequired,
   onSearchTermChange: PropTypes.func,
   onSubmit: PropTypes.func,
   placeholder: PropTypes.string,

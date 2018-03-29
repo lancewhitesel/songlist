@@ -5,7 +5,7 @@ import { withStyles } from 'material-ui/styles';
 import PropTypes from 'prop-types';
 
 import DefaultInput from './DefaultInput';
-import { CLASSES_TYPE } from '../../utils';
+import { ClassesType } from '../../types';
 
 const styles = theme => ({
   paper: {
@@ -88,7 +88,7 @@ class RegisterForm extends Component {
 
 RegisterForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  classes: CLASSES_TYPE.isRequired,
+  classes: ClassesType.isRequired,
 };
 
 export default withStyles(styles)(RegisterForm);

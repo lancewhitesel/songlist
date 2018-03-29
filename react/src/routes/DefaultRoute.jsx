@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+
+import { LocationType, UserType } from '../types';
 
 const DefaultRoute = ({ user, ...rest, location }) => {
   if (user) {
@@ -18,8 +19,8 @@ const DefaultRoute = ({ user, ...rest, location }) => {
 };
 
 DefaultRoute.propTypes = {
-  location: PropTypes.objectOf(PropTypes.string),
-  user: PropTypes.objectOf(PropTypes.string),
+  location: LocationType,
+  user: UserType,
 };
 
 DefaultRoute.defaultProps = {

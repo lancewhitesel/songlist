@@ -5,6 +5,7 @@ import Button from 'material-ui/Button';
 import { Link } from 'react-router-dom';
 
 import DEFAULT_FN from '../../utils';
+import { PlaylistListType } from '../../types';
 
 const generatePlaylistItems = (lists, onSelect) =>
   lists.map(list => (
@@ -35,7 +36,7 @@ const PlaylistList = (props) => {
 };
 
 PlaylistList.propTypes = {
-  lists: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+  lists: PlaylistListType,
   onSelect: PropTypes.func,
 };
 

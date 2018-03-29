@@ -10,6 +10,7 @@ import removeFromMyList from '../actions/removeFromMyList';
 import SongList from '../components/SongList';
 import VideoDetail from '../components/video/VideoDetail';
 import YoutubeSearch from './YoutubeSearch';
+import { ClassesType, SongType, SongListType } from '../types';
 
 const styles = t => ({
   content: {
@@ -42,9 +43,9 @@ const YoutubeSongs = (props) => {
 };
 
 YoutubeSongs.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  youtubeSongs: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectedYoutubeSong: PropTypes.objectOf(PropTypes.string),
+  classes: ClassesType.isRequired,
+  youtubeSongs: SongListType.isRequired,
+  selectedYoutubeSong: SongType,
   selectYoutubeSong: PropTypes.func.isRequired,
   saveToMyList: PropTypes.func.isRequired,
   removeFromMyList: PropTypes.func.isRequired,

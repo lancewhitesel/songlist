@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import TypeTabs from '../components/TypeTabs';
 import DEFAULT_FN from '../utils';
+import { SongListType } from '../types';
 
 const SongList = (props) => {
   const {
@@ -22,7 +23,7 @@ const SongList = (props) => {
 };
 
 SongList.propTypes = {
-  songs: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+  songs: SongListType,
   onSelect: PropTypes.func,
   onSaveToMyList: PropTypes.func,
   onRemoveFromMyList: PropTypes.func,

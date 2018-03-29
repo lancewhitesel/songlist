@@ -11,6 +11,8 @@ import SearchBar from '../components/search/SearchBar';
 import PlaylistList from '../components/playlist/PlaylistList';
 import PlaylistDetail from '../components/playlist/PlaylistDetail';
 
+import { ClassesType, PlaylistType, PlaylistListType } from '../types';
+
 const styles = t => ({
   content: {
     display: 'flex',
@@ -51,9 +53,9 @@ class MyPlaylists extends Component {
 }
 
 MyPlaylists.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  playlists: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectedPlaylist: PropTypes.objectOf(PropTypes.string),
+  classes: ClassesType.isRequired,
+  playlists: PlaylistListType.isRequired,
+  selectedPlaylist: PlaylistType,
   fetchMyPlaylists: PropTypes.func.isRequired,
   searchMyPlaylists: PropTypes.func.isRequired,
   selectPlaylist: PropTypes.func.isRequired,

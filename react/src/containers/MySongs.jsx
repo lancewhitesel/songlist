@@ -10,6 +10,7 @@ import searchMySongs from '../actions/searchMySongs';
 import SongList from '../components/SongList';
 import VideoDetail from '../components/video/VideoDetail';
 import SearchBar from '../components/search/SearchBar';
+import { ClassesType, SongType, SongListType } from '../types';
 
 const styles = t => ({
   content: {
@@ -48,9 +49,9 @@ class MySongs extends Component {
 }
 
 MySongs.propTypes = {
-  classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  mySongs: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectedSong: PropTypes.objectOf(PropTypes.string),
+  classes: ClassesType.isRequired,
+  mySongs: SongListType.isRequired,
+  selectedSong: SongType,
   selectMySong: PropTypes.func.isRequired,
   fetchMySongs: PropTypes.func.isRequired,
   searchMySongs: PropTypes.func.isRequired,
