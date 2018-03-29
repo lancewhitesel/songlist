@@ -38,8 +38,8 @@ const VideoDetail = ({ song, classes }) => {
 };
 
 VideoDetail.propTypes = {
-  classes: PropTypes.object.isRequired,
-  song: PropTypes.object,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  song: PropTypes.objectOf(PropTypes.string),
 };
 
 VideoDetail.defaultProps = {

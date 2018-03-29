@@ -51,9 +51,9 @@ class MyPlaylists extends Component {
 }
 
 MyPlaylists.propTypes = {
-  classes: PropTypes.object.isRequired,
-  playlists: PropTypes.array.isRequired,
-  selectedPlaylist: PropTypes.object,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  playlists: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectedPlaylist: PropTypes.objectOf(PropTypes.string),
   fetchMyPlaylists: PropTypes.func.isRequired,
   searchMyPlaylists: PropTypes.func.isRequired,
   selectPlaylist: PropTypes.func.isRequired,

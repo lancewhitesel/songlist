@@ -18,8 +18,8 @@ const DefaultRoute = ({ user, ...rest, location }) => {
 };
 
 DefaultRoute.propTypes = {
-  location: PropTypes.object,
-  user: PropTypes.object,
+  location: PropTypes.objectOf(PropTypes.string),
+  user: PropTypes.objectOf(PropTypes.string),
 };
 
 DefaultRoute.defaultProps = {

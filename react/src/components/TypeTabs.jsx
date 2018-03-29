@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import TextList from './text/TextList';
 import VideoList from './video/VideoList';
-import { DEFAULT_FN } from '../utils';
+import DEFAULT_FN, { CLASSES_TYPE } from '../utils';
 
 const styles = theme => ({
   tabs: {
@@ -62,8 +62,8 @@ class TypeTabs extends Component {
 }
 
 TypeTabs.propTypes = {
-  songs: PropTypes.array.isRequired,
-  classes: PropTypes.object.isRequired,
+  songs: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
+  classes: CLASSES_TYPE.isRequired,
   onSelect: PropTypes.func,
   onSaveToMyList: PropTypes.func,
   onRemoveFromMyList: PropTypes.func,

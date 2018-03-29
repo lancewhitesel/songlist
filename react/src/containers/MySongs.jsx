@@ -48,9 +48,9 @@ class MySongs extends Component {
 }
 
 MySongs.propTypes = {
-  classes: PropTypes.object.isRequired,
-  mySongs: PropTypes.array.isRequired,
-  selectedSong: PropTypes.object,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  mySongs: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectedSong: PropTypes.objectOf(PropTypes.string),
   selectMySong: PropTypes.func.isRequired,
   fetchMySongs: PropTypes.func.isRequired,
   searchMySongs: PropTypes.func.isRequired,
@@ -63,7 +63,6 @@ MySongs.defaultProps = {
 
 function mapStateToProps({ mySongs, selectedSong }) {
   const mySongsArr = Object.values(mySongs || {}).map(s => s);
-  console.log('mysongs arr: ', mySongsArr);
 
   return {
     mySongs: mySongsArr,

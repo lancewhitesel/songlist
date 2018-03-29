@@ -67,7 +67,7 @@ class LoginForm extends Component {
 
 LoginForm.propTypes = {
   onSubmit: PropTypes.func,
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 LoginForm.defaultProps = {

@@ -91,7 +91,10 @@ AddPlaylist.propTypes = {
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
   handleSubmit: PropTypes.func.isRequired,
   createPlaylist: PropTypes.func.isRequired,
-  history: PropTypes.object.isRequired,
+  history: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ])).isRequired,
 };
 
 const formedComponent = reduxForm({

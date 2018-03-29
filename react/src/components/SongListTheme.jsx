@@ -4,6 +4,8 @@ import Typography from 'material-ui/Typography';
 import { MuiThemeProvider, createMuiTheme, withStyles } from 'material-ui/styles';
 import PropTypes from 'prop-types';
 
+import { CLASSES_TYPE, CHILDREN_TYPE } from '../utils';
+
 const theme = createMuiTheme();
 const styles = t => ({
   root: {
@@ -42,8 +44,8 @@ const SongListTheme = (props) => {
 };
 
 SongListTheme.propTypes = {
-  classes: PropTypes.object.isRequired,
-  children: PropTypes.object.isRequired,
+  classes: CLASSES_TYPE.isRequired,
+  children: CHILDREN_TYPE.isRequired,
 };
 
 export default withStyles(styles)(SongListTheme);

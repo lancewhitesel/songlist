@@ -47,7 +47,7 @@ class SongListApp extends Component {
 }
 
 SongListApp.propTypes = {
-  user: PropTypes.object,
+  user: PropTypes.objectOf(PropTypes.string),
   fetchMySongs: PropTypes.func.isRequired,
 };
 

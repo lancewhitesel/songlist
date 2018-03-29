@@ -86,9 +86,9 @@ class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-  classes: PropTypes.object.isRequired,
-  user: PropTypes.object,
-  location: PropTypes.object.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  user: PropTypes.objectOf(PropTypes.string),
+  location: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
 Navbar.defaultProps = {

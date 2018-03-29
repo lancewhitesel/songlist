@@ -58,8 +58,8 @@ export default (render) => {
     onSaveToMyList: PropTypes.func,
     onRemoveFromMyList: PropTypes.func,
     onSelect: PropTypes.func,
-    song: PropTypes.object,
-    classes: PropTypes.object.isRequired,
+    song: PropTypes.objectOf(PropTypes.string),
+    classes: PropTypes.objectOf(PropTypes.string).isRequired,
   };
 
   ListItemComponent.defaultProps = {

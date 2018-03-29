@@ -35,7 +35,7 @@ const PlaylistList = (props) => {
 };
 
 PlaylistList.propTypes = {
-  lists: PropTypes.array,
+  lists: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   onSelect: PropTypes.func,
 };
 

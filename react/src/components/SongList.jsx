@@ -22,7 +22,7 @@ const SongList = (props) => {
 };
 
 SongList.propTypes = {
-  songs: PropTypes.array,
+  songs: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   onSelect: PropTypes.func,
   onSaveToMyList: PropTypes.func,
   onRemoveFromMyList: PropTypes.func,

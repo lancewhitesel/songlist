@@ -34,8 +34,8 @@ const PlaylistDetail = ({ list, classes }) => {
 };
 
 PlaylistDetail.propTypes = {
-  classes: PropTypes.object.isRequired,
-  list: PropTypes.object,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  list: PropTypes.objectOf(PropTypes.string),
 };
 
 PlaylistDetail.defaultProps = {

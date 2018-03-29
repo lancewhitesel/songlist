@@ -61,9 +61,12 @@ class RegisterView extends React.Component {
 }
 
 RegisterView.propTypes = {
-  classes: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
-  registration: PropTypes.object,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  history: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.func,
+  ])).isRequired,
+  registration: PropTypes.objectOf(PropTypes.string),
   register: PropTypes.func.isRequired,
 };
 

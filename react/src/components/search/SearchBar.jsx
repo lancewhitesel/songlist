@@ -64,7 +64,7 @@ class SearchBar extends Component {
 }
 
 SearchBar.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
   onSearchTermChange: PropTypes.func,
   onSubmit: PropTypes.func,
   placeholder: PropTypes.string,

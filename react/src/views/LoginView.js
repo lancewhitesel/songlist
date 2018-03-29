@@ -73,10 +73,10 @@ class LoginView extends Component {
 }
 
 LoginView.propTypes = {
-  classes: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  location: PropTypes.objectOf(PropTypes.string).isRequired,
   login: PropTypes.func.isRequired,
-  user: PropTypes.object,
+  user: PropTypes.objectOf(PropTypes.string),
   defaultPath: PropTypes.string,
 };
 

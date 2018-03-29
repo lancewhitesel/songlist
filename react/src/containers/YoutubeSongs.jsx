@@ -42,9 +42,9 @@ const YoutubeSongs = (props) => {
 };
 
 YoutubeSongs.propTypes = {
-  classes: PropTypes.object.isRequired,
-  youtubeSongs: PropTypes.array.isRequired,
-  selectedYoutubeSong: PropTypes.object,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
+  youtubeSongs: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectedYoutubeSong: PropTypes.objectOf(PropTypes.string),
   selectYoutubeSong: PropTypes.func.isRequired,
   saveToMyList: PropTypes.func.isRequired,
   removeFromMyList: PropTypes.func.isRequired,
