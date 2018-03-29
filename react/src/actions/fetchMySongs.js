@@ -2,7 +2,9 @@ import { FETCH_MY_SONGS } from '.';
 import falcorModel from '../model/falcorModel';
 
 async function fetchSongData() {
+  console.log('fetching songs...');
   const numberSongs = await falcorModel.getValue('songs.length').then(length => length);
+  console.log('number songs: ', numberSongs);
   let songs = [];
   if (numberSongs > 0) {
     songs = await falcorModel.get(['songs',
@@ -11,6 +13,7 @@ async function fetchSongData() {
       .then(songResponse => songResponse.json.songs);
   }
 
+  console.log('songs: ', songs);
   return songs;
 }
 

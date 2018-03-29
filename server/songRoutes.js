@@ -3,6 +3,7 @@ import sessionRoutes from './routesSession';
 import jsonGraph from 'falcor-json-graph';
 import jwt from 'jsonwebtoken';
 import jwtSecret from './jwtSecret';
+import socketHandler from './socketHandler';
 
 let $atom = jsonGraph.atom;
 let $ref = jsonGraph.ref;
@@ -93,6 +94,8 @@ export default [
           value: res.count 
         }]; 
 
+        socketHandler.emit('falcor', results);
+
         return results; 
       }).catch((reason) => {
         console.error(reason)
@@ -107,10 +110,14 @@ export default [
       return Song.find({ _id: songId }).remove()
         .then((res) => {
           return Song.count({}, (err, count) => count).then(
-            songsCountInDB => ({
-              path: ['songs', 'length'],
-              value: songsCountInDB,
-            }));
+            songsCountInDB => {
+              const results = [{
+                path: ['songs', 'length'],
+                value: songsCountInDB,
+              }];
+              socketHandler.emit('falcor', results);
+              return results;
+            });
         });
     }
   }];

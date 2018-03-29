@@ -63,6 +63,7 @@ MySongs.defaultProps = {
 
 function mapStateToProps({ mySongs, selectedSong }) {
   const mySongsArr = Object.values(mySongs || {}).map(s => s);
+  console.log('mysongs arr: ', mySongsArr);
 
   return {
     mySongs: mySongsArr,

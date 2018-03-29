@@ -5,6 +5,7 @@ import playlistRoutes from './playlistRoutes';
 import jsonGraph from 'falcor-json-graph';
 import jwt from 'jsonwebtoken';
 import jwtSecret from './jwtSecret';
+import socketHandler from './socketHandler';
 
 let $atom = jsonGraph.atom;
 let $ref = jsonGraph.ref;
