@@ -1,13 +1,17 @@
 import { REMOVE_FROM_MY_LIST } from '.';
-import falcorModel from '../model/falcorModel';
+import { apolloClient } from '../app';
+import removeSongMutation from './mutations/removeSong';
 
 async function removeSong(song) {
-  const idToRemove = song.id;
-
-  await falcorModel
-    .call('songs.remove', [idToRemove]);
-
-  return idToRemove;
+  return apolloClient.mutate({
+    mutation: removeSongMutation,
+    variables: {
+      id: song.id,
+    },
+  }).then(({ data }) => data.removeSong.id)
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 export default song => ({

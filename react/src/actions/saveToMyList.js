@@ -1,23 +1,31 @@
 import { SAVE_TO_MY_LIST } from '.';
-import falcorModel from '../model/falcorModel';
+import { apolloClient } from '../app';
+import addSong from './mutations/addSong';
 
 async function saveSong(song) {
-  const newSong = {
-    title: song.title,
-    description: song.description,
-    videoId: song.videoId,
-    imageUrl: song.imageUrl,
-  };
+  const newSong = await apolloClient.mutate({
+    mutation: addSong,
+    variables: {
+      title: song.title,
+      description: song.description,
+      videoId: song.videoId,
+      imageUrl: song.imageUrl,
+    },
+  }).then(({ data }) => {
+    const addedSong = data.addSong;
 
-  const newSongID = await falcorModel
-    .call('songs.add', [newSong])
-    .then((result) => {
-      falcorModel.getValue(['songs', 'newSongID']).then(songID => songID);
-    });
+    return {
+      id: addedSong.id,
+      title: addedSong.title,
+      description: addedSong.description,
+      videoId: addedSong.videoId,
+      imageUrl: addedSong.imageUrl,
+    };
+  }).catch((err) => {
+    console.log(err);
+  });
 
-  newSong.id = newSongID;
-
-  return song;
+  return newSong;
 }
 
 export default song => ({

@@ -1,6 +1,7 @@
 import { LOGIN } from '.';
-import falcorModel from '../model/falcorModel';
+// import falcorModel from '../model/falcorModel';
 
+/*
 async function login(credentials) {
   await falcorModel
     .call(['login'], [credentials])
@@ -29,6 +30,11 @@ async function login(credentials) {
   }
 
   return user;
+}
+*/
+
+function login() {
+  console.warn('TODO - login is broken');
 }
 
 export default (credentials) => {

@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from 'react-apollo';
 
 import SongListApp from './containers/SongListApp';
 import songListStore from './store/songListStore';
@@ -10,14 +12,20 @@ require('./components/global.scss');
 
 const target = document.getElementById('root');
 
-// This is for server-side rendering...
-const store = songListStore(window.__INITIAL_STATE__); // eslint-disable-line no-underscore-dangle
+const store = songListStore();
 export default store;
 
+const apolloClient = new ApolloClient({
+  dataIdFromObject: o => o.id,
+});
+export { apolloClient };
+
 const render = () => (
-  <Provider store={store}>
-    <SongListApp />
-  </Provider>
+  <ApolloProvider client={apolloClient}>
+    <Provider store={store}>
+      <SongListApp />
+    </Provider>
+  </ApolloProvider>
 );
 
 const node = render();

@@ -16,7 +16,7 @@ export default function (state = [], action) {
     });
   } else if (action.type === FETCH_MY_PLAYLISTS) {
     playlistsCache = (Object.values(action.payload) || []).reduce((cache, s) => {
-      const id = s._id; // eslint-disable-line no-underscore-dangle
+      const { id } = s;
       if (id) {
         cache.push({
           id,

@@ -1,17 +1,13 @@
 import { FETCH_MY_PLAYLISTS } from '.';
-import falcorModel from '../model/falcorModel';
+import { apolloClient } from '../app';
+import fetchPlaylists from './queries/fetchPlaylists';
 
 async function fetchPlaylistData() {
-  const numberLists = await falcorModel.getValue('playlists.length').then(length => length);
-  let lists = [];
-  if (numberLists > 0) {
-    lists = await falcorModel.get(['playlists',
-      { from: 0, to: numberLists - 1 },
-      ['_id', 'title', 'description']])
-      .then(listsResponse => listsResponse.json.playlists);
-  }
+  const playlists = await apolloClient.query({
+    query: fetchPlaylists,
+  });
 
-  return lists;
+  return playlists.data.playlistList;
 }
 
 export default () => ({

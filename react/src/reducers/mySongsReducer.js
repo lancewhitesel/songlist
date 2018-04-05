@@ -18,7 +18,7 @@ export default function (state = [], action) {
   } else if (action.type === FETCH_MY_SONGS) {
     console.log('reducer: ', action.payload);
     songsCache = (Object.values(action.payload) || []).reduce((cache, s) => {
-      const id = s._id; // eslint-disable-line no-underscore-dangle
+      const { id } = s;
       if (id) {
         cache[s.videoId] = { // eslint-disable-line no-param-reassign
           id,

@@ -1,17 +1,27 @@
 import { CREATE_PLAYLIST } from '.';
-import falcorModel from '../model/falcorModel';
+import { apolloClient } from '../app';
+import addPlaylist from './mutations/addPlaylist';
 
 async function createPlaylist(list, callback) {
-  const newList = {
-    title: list.title,
-    description: list.description,
-  };
+  const newList = await apolloClient.mutate({
+    mutation: addPlaylist,
+    variables: {
+      title: list.title,
+      description: list.description,
+      songs: list.songs || [],
+    },
+  }).then(({ data }) => {
+    const addedPlaylist = data.addPlaylist;
 
-  const newListID = await falcorModel
-    .call('playlists.add', [newList])
-    .then(result => falcorModel.getValue(['playlists', 'newListID']).then(listID => listID));
-
-  newList.id = newListID;
+    return {
+      id: addedPlaylist.id,
+      title: addedPlaylist.title,
+      description: addedPlaylist.description,
+      songs: addPlaylist.songs,
+    };
+  }).catch((err) => {
+    console.log(err);
+  });
 
   callback();
 

@@ -20,9 +20,8 @@ module.exports = {
         target: "http://localhost:3300",
         pathRewrite: {"^/api" : ""}
       },
-      "/falcor": {
-        target: "http://localhost:3300",
-        pathRewrite: {"^/falcor" : ""}
+      "/graphql": {
+        target: "http://localhost:3300"
       }
     }
   },

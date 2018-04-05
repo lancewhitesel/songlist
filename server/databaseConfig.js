@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+const ObjectId = Schema.Types.ObjectId;
 
 //'mongodb://lwadmin:lwadmin@ds137826.mlab.com:37826/lancewhitesel');
 const config = {
@@ -15,7 +16,14 @@ const conf = {
 };
 */
 
-mongoose.connect(`mongodb://${config.hostname}:${config.port}/${config.env}`);
+console.log('Connecting to mongo...');
+// mongoose.connect(`mongodb://${config.hostname}:${config.port}/${config.env}`);
+mongoose.connect('mongodb://localhost/songList');
+const connection = mongoose.connection;
+connection.once('open', () => {
+  console.log('connection to db success!');
+});
+
 
 const SONGS_COLLECTION = 'songs';
 const songSchema = new Schema({
@@ -30,11 +38,11 @@ const songSchema = new Schema({
 });
 export const Song = mongoose.model('Song', songSchema);
 
-
 const PLAYLISTS_COLLECTION = 'playlists';
 const playlistSchema = new Schema({
   title: String,
   description: String,
+  songs: [{ type: ObjectId, ref: 'Song' }],
 }, {
   collection: PLAYLISTS_COLLECTION,
   minimize: false,

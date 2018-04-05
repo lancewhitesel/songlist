@@ -1,6 +1,7 @@
 import { REGISTER } from '.';
-import falcorModel from '../model/falcorModel';
+// import falcorModel from '../model/falcorModel';
 
+/*
 async function register(newUserModel) {
   await falcorModel
     .call(['register'], [newUserModel])
@@ -17,6 +18,11 @@ async function register(newUserModel) {
   }
 
   return registrationResult;
+}
+*/
+
+function register() {
+  console.warn('TODO - this is broken');
 }
 
 export default (newUserInfo) => {

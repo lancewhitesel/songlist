@@ -6,20 +6,24 @@
   "author": "Lance Whitesel",
   "license": "MIT",
   "scripts": {
-    "dev": "webpack-dev-server"
+    "dev": "webpack-dev-server",
+    "lint": "eslint --ext .jsx,.js src/"
   },
   "dependencies": {
+    "apollo-boost": "^0.1.4",
+    "apollo-link": "^1.2.1",
     "axios": "^0.18.0",
     "babel-preset-react-app": "3.1.1",
     "classnames": "^2.2.5",
-    "falcor": "^2.0.0",
-    "falcor-http-datasource": "^0.1.3",
     "formsy-react": "^1.1.4",
+    "graphql": "^0.13.2",
+    "graphql-tag": "^2.8.0",
     "history": "^4.7.2",
     "material-ui": "^1.0.0-beta.37",
     "material-ui-icons": "^1.0.0-beta.36",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
+    "react-apollo": "^2.1.2",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.2.2",

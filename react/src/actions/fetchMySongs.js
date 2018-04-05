@@ -1,20 +1,13 @@
 import { FETCH_MY_SONGS } from '.';
-import falcorModel from '../model/falcorModel';
+import { apolloClient } from '../app';
+import fetchSongs from './queries/fetchSongs';
 
 async function fetchSongData() {
-  console.log('fetching songs...');
-  const numberSongs = await falcorModel.getValue('songs.length').then(length => length);
-  console.log('number songs: ', numberSongs);
-  let songs = [];
-  if (numberSongs > 0) {
-    songs = await falcorModel.get(['songs',
-      { from: 0, to: numberSongs - 1 },
-      ['_id', 'title', 'description', 'imageUrl', 'videoId']])
-      .then(songResponse => songResponse.json.songs);
-  }
+  const songs = await apolloClient.query({
+    query: fetchSongs,
+  });
 
-  console.log('songs: ', songs);
-  return songs;
+  return songs.data.songList;
 }
 
 export default () => ({
