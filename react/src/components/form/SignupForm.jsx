@@ -21,7 +21,7 @@ const styles = theme => ({
   },
 });
 
-class RegisterForm extends Component {
+class SignupForm extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -33,7 +33,7 @@ class RegisterForm extends Component {
     return (
       <Formsy onValidSubmit={this.props.onSubmit}>
         <Paper elevation={1} className={paper}>
-          <h3>Register</h3>
+          <h3>Sign Up</h3>
           <DefaultInput
             onChange={(event) => { }}
             name="username"
@@ -77,7 +77,7 @@ class RegisterForm extends Component {
               type="submit"
               className={button}
             >
-              Register
+              Sign Up
             </Button>
           </div>
         </Paper>
@@ -86,9 +86,9 @@ class RegisterForm extends Component {
   }
 }
 
-RegisterForm.propTypes = {
+SignupForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   classes: ClassesType.isRequired,
 };
 
-export default withStyles(styles)(RegisterForm);
+export default withStyles(styles)(SignupForm);

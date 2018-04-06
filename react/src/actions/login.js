@@ -1,40 +1,30 @@
 import { LOGIN } from '.';
-// import falcorModel from '../model/falcorModel';
+import { apolloClient } from '../app';
+import loginMutation from './mutations/login';
 
-/*
-async function login(credentials) {
-  await falcorModel
-    .call(['login'], [credentials])
-    .then(result => result);
-
-  const tokenRes = await falcorModel.getValue('login.token');
-  if (tokenRes === 'INVALID') {
-    const errorRes = await falcorModel.getValue('login.error');
-    return { loginError: errorRes };
-  }
-
-  let user = null;
-  if (tokenRes) {
-    const username = await falcorModel.getValue('login.username');
-    const role = await falcorModel.getValue('login.role');
-
-    localStorage.setItem('token', tokenRes);
-    localStorage.setItem('username', username);
-    localStorage.setItem('role', role);
-
-    user = {
+async function login({ username, password }) {
+  const user = await apolloClient.mutate({
+    mutation: loginMutation,
+    variables: {
       username,
-      role,
-      token: tokenRes,
-    };
-  }
+      password,
+    },
+  }).then(({ data }) => {
+    const loggedInUser = data.login;
+
+    if (loggedInUser && loggedInUser.token) {
+      localStorage.setItem('token', loggedInUser.token);
+      localStorage.setItem('username', loggedInUser.username);
+      localStorage.setItem('role', loggedInUser.role);
+    }
+
+    return loggedInUser;
+  }).catch((err) => {
+    const errorString = (err.graphQLErrors && err.graphQLErrors[0].message) || err.message;
+    return { loginError: errorString };
+  });
 
   return user;
-}
-*/
-
-function login() {
-  console.warn('TODO - login is broken');
 }
 
 export default (credentials) => {

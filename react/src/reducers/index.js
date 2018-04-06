@@ -5,7 +5,7 @@ import selectedYoutubeSongReducer from './selectedYoutubeSongReducer';
 import mySongsReducer from './mySongsReducer';
 import youtubeSearchReducer from './youtubeSearchReducer';
 import loginReducer from './loginReducer';
-import registrationReducer from './registrationReducer';
+import signupReducer from './signupReducer';
 import myPlaylistsReducer from './myPlaylistsReducer';
 import selectedPlaylistReducer from './selectedPlaylistReducer';
 
@@ -13,7 +13,7 @@ import selectedPlaylistReducer from './selectedPlaylistReducer';
 //  merging the result of all reducers.
 const rootReducer = combineReducers({
   user: loginReducer,
-  registration: registrationReducer,
+  signup: signupReducer,
   selectedSong: selectedMySongReducer,
   selectedYoutubeSong: selectedYoutubeSongReducer,
   youtubeSongs: youtubeSearchReducer,

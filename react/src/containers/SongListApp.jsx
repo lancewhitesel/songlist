@@ -8,7 +8,7 @@ import SongListTheme from '../components/SongListTheme';
 
 import LoginView from '../views/LoginView';
 import LogoutView from '../views/LogoutView';
-import RegisterView from '../views/RegisterView';
+import SignupView from '../views/SignupView';
 import MySongs from '../containers/MySongs';
 import YoutubeSongs from '../containers/YoutubeSongs';
 import MyPlaylists from '../containers/MyPlaylists';
@@ -16,6 +16,7 @@ import AddPlaylist from '../containers/AddPlaylist';
 import DefaultRoute from '../routes/DefaultRoute';
 import fetchMySongs from '../actions/fetchMySongs';
 import { UserType } from '../types';
+import requireAuth from '../hoc/requireAuth';
 
 class SongListApp extends Component {
   componentWillMount() {
@@ -32,11 +33,11 @@ class SongListApp extends Component {
               <Switch>
                 <Route component={LoginView} path="/login" />
                 <Route component={LogoutView} path="/logout" />
-                <Route component={RegisterView} path="/register" />
-                {this.props.user && <Route path="/youtube" component={YoutubeSongs} />}
-                {this.props.user && <Route path="/mysongs" component={MySongs} />}
-                {this.props.user && <Route path="/playlists" component={MyPlaylists} />}
-                {this.props.user && <Route path="/addplaylist" component={AddPlaylist} />}
+                <Route component={SignupView} path="/signup" />
+                <Route path="/youtube" component={requireAuth(YoutubeSongs)} />
+                <Route path="/mysongs" component={requireAuth(MySongs)} />
+                <Route path="/playlists" component={requireAuth(MyPlaylists)} />
+                <Route path="/addplaylist" component={requireAuth(AddPlaylist)} />
                 <Route component={DefaultRoute} path="*" />
               </Switch>
             </div>

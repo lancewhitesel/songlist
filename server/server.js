@@ -6,7 +6,7 @@ import mongo from 'mongodb';
 import path from 'path';
 import { graphqlExpress, graphiqlExpress } from 'apollo-server-express';
 
-import schema from './schema';
+import schema from './graphql/schema';
 
 const { MongoClient } = mongo;
 

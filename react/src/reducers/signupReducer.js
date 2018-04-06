@@ -1,7 +1,7 @@
-import { REGISTER } from '../actions';
+import { SIGNUP } from '../actions';
 
 export default function (state = null, action) {
-  if (action.type === REGISTER) {
+  if (action.type === SIGNUP) {
     return action.payload;
   }
 

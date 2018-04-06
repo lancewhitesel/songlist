@@ -34,6 +34,9 @@ export const HistoryType = PropTypes.objectOf(PropTypes.oneOfType([
   LocationType,
 ]));
 
-export const RegistrationType = PropTypes.objectOf(PropTypes.string);
+export const SignupType = PropTypes.objectOf(PropTypes.oneOfType([
+  PropTypes.string,
+  PropTypes.bool,
+]));
 
 export const UserType = PropTypes.objectOf(PropTypes.string);

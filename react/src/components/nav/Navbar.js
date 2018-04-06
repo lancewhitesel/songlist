@@ -38,6 +38,13 @@ class Navbar extends Component {
     };
   }
 
+  componentWillMount(nextProps) {
+    const { pathname } = this.props.location;
+    this.setState({
+      value: PATHS_TO_VALUE[pathname],
+    });
+  }
+
   handleChange(e, value) {
     this.setState({ value });
   }
@@ -45,7 +52,7 @@ class Navbar extends Component {
   render() {
     const { classes: { appBar, button }, user } = this.props;
 
-    if (!user) {
+    if (!user || user.loginError) {
       return (
         <AppBar position="static" className={appBar}>
           <Link to="/" component="div">
@@ -54,9 +61,9 @@ class Navbar extends Component {
             </Button>
           </Link>
           <span>
-            <Link to="/register" component="div">
+            <Link to="/signup" component="div">
               <Button size="small" variant="raised" className={button}>
-                Register
+                Sign Up
               </Button>
             </Link>
             <Link to="/login" component="div">

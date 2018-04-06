@@ -1,20 +1,6 @@
-import { Song } from './databaseConfig';
-import sessionRoutes from './routesSession';
-import songRoutes from './songRoutes';
-import playlistRoutes from './playlistRoutes';
-import jsonGraph from 'falcor-json-graph';
+//  This is some test code to potentially auth every call to the backend
 import jwt from 'jsonwebtoken';
 import jwtSecret from './jwtSecret';
-import socketHandler from './socketHandler';
-
-let $atom = jsonGraph.atom;
-let $ref = jsonGraph.ref;
-
-const Routes = [
-  ...sessionRoutes,
-  ...songRoutes,
-  ...playlistRoutes,
-];
 
 export default (req, res) => {
   const { token, role, username } = req.headers;
@@ -25,5 +11,5 @@ export default (req, res) => {
 
   console.info(`The ${username} is authorized === `, isAuthorized);
 
-  return Routes;
+  return true;
 };

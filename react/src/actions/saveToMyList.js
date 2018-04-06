@@ -22,7 +22,7 @@ async function saveSong(song) {
       imageUrl: addedSong.imageUrl,
     };
   }).catch((err) => {
-    console.log(err);
+    console.err(err);
   });
 
   return newSong;

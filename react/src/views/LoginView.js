@@ -38,20 +38,20 @@ class LoginView extends Component {
       if (nextProps.user.token) {
         this.setState({ redirectToReferrer: true });
       } else if (nextProps.user.loginError) {
-        this.setState({ error: this.props.user.loginError });
+        this.setState({ error: nextProps.user.loginError });
       }
     }
   }
 
   render() {
-    const { classes: { loginContainer }, location } = this.props;
+    const { classes: { loginContainer }, location, user } = this.props;
     let { from } = (location && location.state) || this.state.defaultPath;
     if (!from || (from && from.pathname === '/')) {
       from = this.state.defaultPath;
     }
 
     let { redirectToReferrer } = this.state;
-    redirectToReferrer = !!this.props.user || redirectToReferrer;
+    redirectToReferrer = !this.state.error && (!!user || redirectToReferrer);
 
     if (redirectToReferrer) {
       return <Redirect to={from} />;

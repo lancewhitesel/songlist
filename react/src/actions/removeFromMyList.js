@@ -10,7 +10,7 @@ async function removeSong(song) {
     },
   }).then(({ data }) => data.removeSong.id)
     .catch((err) => {
-      console.log(err);
+      console.err(err);
     });
 }
 

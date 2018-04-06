@@ -16,7 +16,6 @@ export default function (state = [], action) {
       return false;
     });
   } else if (action.type === FETCH_MY_SONGS) {
-    console.log('reducer: ', action.payload);
     songsCache = (Object.values(action.payload) || []).reduce((cache, s) => {
       const { id } = s;
       if (id) {
@@ -32,7 +31,6 @@ export default function (state = [], action) {
       return cache;
     }, {});
 
-    console.log('reducer: new cache: ', songsCache);
     return songsCache;
   } else if (action.type === SAVE_TO_MY_LIST) {
     const song = action.payload;

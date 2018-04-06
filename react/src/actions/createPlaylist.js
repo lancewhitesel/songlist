@@ -20,7 +20,7 @@ async function createPlaylist(list, callback) {
       songs: addPlaylist.songs,
     };
   }).catch((err) => {
-    console.log(err);
+    console.err(err);
   });
 
   callback();
