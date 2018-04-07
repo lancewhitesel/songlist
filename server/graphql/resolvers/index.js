@@ -13,4 +13,9 @@ export default {
     ...playlistResolvers.Mutation,
     ...userResolvers.Mutation,
   },
+  Subscription: {
+    ...songResolvers.Subscription,
+    ...playlistResolvers.Subscription,
+    ...userResolvers.Subscription,
+  },
 };

@@ -14,4 +14,5 @@ export default {
   mutations: `
     addPlaylist(title: String!, description: String, songs: [ID]!): Playlist
   `,
+  subscriptions: ``,
 };

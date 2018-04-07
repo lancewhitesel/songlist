@@ -17,4 +17,7 @@ export default {
     addSong(title: String!, artist: String, description: String, videoId: String!, imageUrl: String): Song
     deleteSong(id: ID!): Song
   `,
+  subscriptions: `
+    songAdded: Song
+  `,
 };

@@ -13,8 +13,7 @@ export default {
       token: String
     }
   `,
-  queries: `
-  `,
+  queries: ``,
   mutations: `
     login(username: String!, password: String!): User
     signup(
@@ -29,4 +28,5 @@ export default {
       token: String
     ): User
   `,
+  subscriptions: ``,
 };

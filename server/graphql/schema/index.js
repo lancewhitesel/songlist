@@ -18,11 +18,18 @@ const typeDefs = `
     ${userSchema.queries}
   }
 
-# The mutation root type, used to define all mutations
+# The Mutation root type, used to define all mutations
   type Mutation {
     ${playlistSchema.mutations}
     ${songSchema.mutations}
     ${userSchema.mutations}
+  }
+
+# The Subscription root type, used to define all ws subscriptions
+  type Subscription {
+    ${playlistSchema.subscriptions}
+    ${songSchema.subscriptions}
+    ${userSchema.subscriptions}
   }
 `;
 

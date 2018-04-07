@@ -1,4 +1,7 @@
 import { Song } from '../../database';
+import pubsub from './pubsub';
+
+const SONG_ADDED = 'songAdded';
 
 export default {
   Query: {
@@ -17,10 +20,19 @@ export default {
         imageUrl,
       });
 
-      return song.save();
+      return song.save().then((data) => {
+        // console.log('publishing data...', data);
+        pubsub.publish(SONG_ADDED, { songAdded: data });
+        return data;
+      });
     },
     deleteSong(root, { id }) {
       return Song.findOneAndRemove({ _id: id });
+    },
+  },
+  Subscription: {
+    songAdded: {
+      subscribe: () => pubsub.subscribe(SONG_ADDED),
     },
   },
 };
