@@ -1,3 +1,4 @@
+import os from 'os';
 import { createServer } from 'http';
 import express from 'express';
 import bodyParser from 'body-parser';
@@ -30,14 +31,14 @@ server.use('/graphql', bodyParser.json(), graphqlExpress({ schema }));
 
 server.use('/graphiql', graphiqlExpress({
   endpointURL: '/graphql',
-  subscriptionsEndpoint: `ws://localhost:${PORT}/subscriptions`,
+  subscriptionsEndpoint: `ws://${os.hostname()}:${PORT}/subscriptions`,
 }));
 
 // Websocket server
 const ws = createServer(server);
 
 ws.listen(PORT, () => {
-  console.log(`SongList server now listening on http://localhost:${PORT}`);
+  console.log(`SongList server now listening on http://${os.hostname()}:${PORT}`);
 
   // GraphQL web socket for handling subscriptions
   new SubscriptionServer({
