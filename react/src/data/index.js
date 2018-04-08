@@ -37,10 +37,10 @@ const apolloClient = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-subscriptions(apolloClient);
 
 function setReduxStore(store) {
   console.log('store! ', store);
+  subscriptions(apolloClient, store);
 }
 
 export {

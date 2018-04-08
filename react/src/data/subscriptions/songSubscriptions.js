@@ -5,6 +5,9 @@ const songAddedSubscription = gql`
     songAdded {
       id
       title
+      imageUrl
+      videoId
+      description
     }
   }
 `;
