@@ -32,17 +32,23 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
 
-    const { pathname } = props.location;
     this.state = {
-      value: PATHS_TO_VALUE[pathname],
+      value: 0,
     };
+    this.setCurrentTab();
   }
 
   componentWillMount(nextProps) {
+    this.setCurrentTab();
+  }
+
+  setCurrentTab() {
     const { pathname } = this.props.location;
-    this.setState({
-      value: PATHS_TO_VALUE[pathname],
-    });
+    if (PATHS_TO_VALUE[pathname]) {
+      this.setState({
+        value: PATHS_TO_VALUE[pathname],
+      });
+    }
   }
 
   handleChange(e, value) {
