@@ -4,6 +4,9 @@ import { withStyles } from 'material-ui/styles';
 import { ClassesType, SongType } from '../../types';
 
 const styles = theme => ({
+  root: {
+    width: '100%',
+  },
   details: {
     marginTop: 10,
     padding: 10,
@@ -21,7 +24,7 @@ const VideoDetail = ({ song, classes }) => {
   const url = `https://www.youtube.com/embed/${videoId}`;
 
   return (
-    <div className="col-md-8">
+    <div className={classes.root}>
       <div className="embed-responsive embed-responsive-16by9">
         <iframe
           src={url}

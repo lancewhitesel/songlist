@@ -15,9 +15,10 @@ export default {
   `,
   mutations: `
     addSong(title: String!, artist: String, description: String, videoId: String!, imageUrl: String): Song
-    deleteSong(id: ID!): Song
+    removeSong(id: ID!): Song
   `,
   subscriptions: `
     songAdded: Song
+    songRemoved: Song
   `,
 };

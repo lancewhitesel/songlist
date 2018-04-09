@@ -12,4 +12,15 @@ const songAddedSubscription = gql`
   }
 `;
 
-export default songAddedSubscription;
+const songRemovedSubscription = gql`
+  subscription {
+    songRemoved {
+      id
+    }
+  }
+`;
+
+export default {
+  songAddedSubscription,
+  songRemovedSubscription,
+};

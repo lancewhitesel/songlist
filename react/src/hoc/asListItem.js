@@ -4,6 +4,7 @@ import { ListItem, ListItemSecondaryAction } from 'material-ui/List';
 import IconButton from 'material-ui/IconButton';
 import LibraryAddIcon from 'material-ui-icons/LibraryAdd';
 import LibraryMusicIcon from 'material-ui-icons/LibraryMusic';
+import RemoveIcon from 'material-ui-icons/Delete';
 import { withStyles } from 'material-ui/styles';
 
 import DEFAULT_FN from '../utils';
@@ -36,6 +37,18 @@ const SaveToListButton = withStyles(styles)(({ isInMyList, classes, onClick }) =
   </ListItemSecondaryAction>
 ));
 
+const RemoveFromListButton = withStyles(styles)(({ classes, onClick }) => (
+  <ListItemSecondaryAction>
+    <IconButton
+      aria-label="Delete From My Songs"
+      className={classes.button}
+      onClick={onClick}
+    >
+      <RemoveIcon />
+    </IconButton>
+  </ListItemSecondaryAction>
+));
+
 export default (render) => {
   const ListItemComponent = ({
     song, onSelect, onSaveToMyList, onRemoveFromMyList, classes,
@@ -44,7 +57,8 @@ export default (render) => {
       <div className="list-item" onClick={() => onSelect(song)} role="button" tabIndex={0}>
         {render(song)}
       </div>
-      {onSaveToMyList && <SaveToListButton
+      {(onSaveToMyList && onRemoveFromMyList) &&
+      <SaveToListButton
         isInMyList={song.isInMySongs}
         onClick={() => {
           song.isInMySongs
@@ -52,6 +66,7 @@ export default (render) => {
             : onSaveToMyList(song);
         }}
       />}
+      {(!onSaveToMyList && onRemoveFromMyList) && <RemoveFromListButton onClick={() => onRemoveFromMyList(song)} />}
     </ListItem>
   );
 

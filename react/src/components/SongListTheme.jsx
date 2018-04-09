@@ -23,8 +23,8 @@ const styles = t => ({
       },
     },
     '& .container': {
-      marginTop: 50,
-      marginBottom: 100,
+      margin: '50px 15px 100px 15px',
+      maxWidth: '95%',
     },
   },
 });

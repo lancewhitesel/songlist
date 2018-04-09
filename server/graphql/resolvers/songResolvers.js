@@ -2,6 +2,7 @@ import { Song } from '../../database';
 import pubsub from './pubsub';
 
 const SONG_ADDED = 'songAdded';
+const SONG_REMOVED = 'songRemoved';
 
 export default {
   Query: {
@@ -21,18 +22,23 @@ export default {
       });
 
       return song.save().then((data) => {
-        // console.log('publishing data...', data);
         pubsub.publish(SONG_ADDED, { songAdded: data });
         return data;
       });
     },
-    deleteSong(root, { id }) {
-      return Song.findOneAndRemove({ _id: id });
+    removeSong(root, { id }) {
+      return Song.findOneAndRemove({ _id: id }).then((data) => {
+        pubsub.publish(SONG_REMOVED, { songRemoved: data });
+        return data;
+      });
     },
   },
   Subscription: {
     songAdded: {
       subscribe: () => pubsub.subscribe(SONG_ADDED),
+    },
+    songRemoved: {
+      subscribe: () => pubsub.subscribe(SONG_REMOVED),
     },
   },
 };

@@ -3,8 +3,8 @@ import gql from 'graphql-tag';
 import { apolloClient } from '../..';
 
 const mutation = gql`
-mutation DeleteSong($id: ID!) {
-  deleteSong(id: $id) {
+mutation RemoveSong($id: ID!) {
+  removeSong(id: $id) {
     id
   }
 }
@@ -18,5 +18,5 @@ export default async song =>
     },
   }).then(({ data }) => data.removeSong.id)
     .catch((err) => {
-      console.err(err);
+      console.log(err);
     });

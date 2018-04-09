@@ -1,5 +1,4 @@
 import gql from 'graphql-tag';
-import { query as fetchSongs } from '../../queries/graphql/fetchSongList';
 
 import { apolloClient } from '../..';
 
@@ -25,15 +24,6 @@ export default async (song) => {
       imageUrl: song.imageUrl,
     },
   }).then(({ data }) => {
-    const cache = apolloClient.readQuery({
-      query: fetchSongs,
-    });
-    cache.songList.push(data.addSong);
-    apolloClient.writeQuery({
-      query: fetchSongs,
-      data: cache,
-    });
-
     const addedSong = data.addSong;
 
     return {
@@ -44,7 +34,7 @@ export default async (song) => {
       imageUrl: addedSong.imageUrl,
     };
   }).catch((err) => {
-    console.err(err);
+    console.log(err);
   });
 
   return newSong;

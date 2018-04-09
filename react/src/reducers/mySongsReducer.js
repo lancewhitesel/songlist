@@ -46,7 +46,9 @@ export default function (state = [], action) {
   } else if (action.type === REMOVE_FROM_MY_LIST) {
     const deletedId = action.payload;
     const deletedSong = Object.values(songsCache).filter(s => s.id === deletedId)[0];
-    delete songsCache[deletedSong.videoId];
+    if (deletedSong) {
+      delete songsCache[deletedSong.videoId];
+    }
 
     return Object.assign({}, songsCache);
   }

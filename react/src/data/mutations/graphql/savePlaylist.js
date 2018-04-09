@@ -34,7 +34,7 @@ export default async (list, callback) => {
       songs: addedPlaylist.songs,
     };
   }).catch((err) => {
-    console.err(err);
+    console.log(err);
   });
 
   callback();
