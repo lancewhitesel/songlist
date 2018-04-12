@@ -4,7 +4,7 @@
   },
   "extends": ["airbnb", "react-app"],
   "rules": {
-    "max-len": ["error", { "code": 120 }],
+    "max-len": ["error", { "code": 120, "ignoreStrings": true, "ignoreTrailingComments": true }],
     "react/jsx-filename-extension": "off",
     "linebreak-style": "off",
     "jsx-a11y/click-events-have-key-events": "off",
