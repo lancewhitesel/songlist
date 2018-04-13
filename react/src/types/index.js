@@ -22,6 +22,7 @@ export const SongType = PropTypes.objectOf(PropTypes.oneOfType([
 export const SongListType = PropTypes.arrayOf(SongType);
 
 export const PlaylistType = PropTypes.objectOf(PropTypes.oneOfType([
+  PropTypes.arrayOf(PropTypes.object),
   PropTypes.objectOf(PropTypes.string),
   PropTypes.string,
 ]));

@@ -3,7 +3,7 @@ import { withStyles } from 'material-ui/styles';
 
 import { ClassesType, PlaylistType } from '../../types';
 
-const styles = theme => ({
+const styles = () => ({
   details: {
     marginTop: 10,
     padding: 10,
@@ -12,23 +12,31 @@ const styles = theme => ({
   },
 });
 
+const renderSongs = songs => songs.map(song => (
+  <div key={song.id}>
+    <div>Title: {song.title}</div>
+    <div>Description: {song.description}</div>
+    <br />
+  </div>
+));
 
 const PlaylistDetail = ({ list, classes }) => {
   if (!list) {
     return <h5 className="col-md-8">Select A Playlist To See Its Content</h5>;
   }
 
-  const { title, description } = list;
+  const { title, description, songs } = list;
 
   return (
     <div className="col-md-8">
       <div className="embed-responsive embed-responsive-16by9">
         <h3> Playlist Detail ! </h3>
-        Stuff!
       </div>
       <div className={classes.details}>
         <div>{title}</div>
         <div>{description}</div>
+        <h4> Songs </h4>
+        {renderSongs(songs)}
       </div>
     </div>
   );

@@ -22,6 +22,7 @@ export default function (state = [], action) {
           id,
           title: s.title,
           description: s.description,
+          songs: s.songs,
         });
         /*
         cache[id] = { // eslint-disable-line no-param-reassign

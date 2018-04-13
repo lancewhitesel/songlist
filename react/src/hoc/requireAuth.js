@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { graphql } from 'react-apollo';
 import PropTypes from 'prop-types';
 
 import { UserType } from '../types';
-// import currentUserQuery from '../queries/CurrentUser';
 
 export default (WrappedComponent) => {
   class RequireAuth extends Component {
     componentWillUpdate(nextProps) {
       if (!nextProps.user || nextProps.user.loginError) {
-        nextProps.history.push('/login');
+        nextProps.history.push('/login', {
+          from: this.props.location.pathname,
+        });
       }
     }
 
@@ -22,6 +22,9 @@ export default (WrappedComponent) => {
   RequireAuth.propTypes = {
     user: UserType,
     history: PropTypes.shape({}).isRequired,
+    location: PropTypes.shape({
+      pathname: PropTypes.string,
+    }).isRequired,
   };
 
   RequireAuth.defaultProps = {

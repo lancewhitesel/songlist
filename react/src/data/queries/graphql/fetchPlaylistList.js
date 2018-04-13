@@ -11,6 +11,7 @@ const query = gql`
     songs {
       id
       title
+      description
     }
   }
 }
