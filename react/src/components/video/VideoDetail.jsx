@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
+import PropTypes from 'prop-types';
+import YoutubePlayer from 'youtube-player';
 
 import { ClassesType, SongType } from '../../types';
+import NO_OP from '../../utils';
 
 const styles = theme => ({
   root: {
@@ -15,39 +18,68 @@ const styles = theme => ({
   },
 });
 
-const VideoDetail = ({ song, classes }) => {
-  if (!song) {
-    return <h5 className="col-md-8">Select A Song To See Its Video</h5>;
+class VideoDetail extends Component {
+  constructor(props) {
+    super(props);
+
+    this.player = null;
   }
 
-  const { title, description, videoId } = song;
-  const url = `https://www.youtube.com/embed/${videoId}`;
+  componentDidUpdate() {
+    const { song } = this.props;
 
-  return (
-    <div className={classes.root}>
-      <div className="embed-responsive embed-responsive-16by9">
-        <iframe
-          src={url}
-          frameBorder="0"
-          className="embed-responsive-item"
-          title={title}
-        />
+    if (song && song.videoId) {
+      this.playSong(song.videoId);
+    }
+  }
+
+  playSong(videoId) {
+    if (!this.player) {
+      this.player = YoutubePlayer('song-player');
+    }
+
+    this.player.loadVideoById(videoId);
+    this.player.playVideo();
+    this.player.on('stateChange', (event) => {
+      if (event.data === 0) {
+        console.log('video ended!');
+        this.props.onSongEnded();
+      }
+    });
+  }
+
+  render() {
+    const { song, classes } = this.props;
+    if (!song) {
+      return <h5 className="col-md-8">Select A Song To See Its Video</h5>;
+    }
+
+    const { title, description } = song;
+    // const url = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+
+    return (
+      <div className={classes.root}>
+        <div className="embed-responsive embed-responsive-16by9">
+          <div id="song-player" />
+        </div>
+        <div className={classes.details}>
+          <div>{title}</div>
+          <div>{description}</div>
+        </div>
       </div>
-      <div className={classes.details}>
-        <div>{title}</div>
-        <div>{description}</div>
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 VideoDetail.propTypes = {
   classes: ClassesType.isRequired,
   song: SongType,
+  onSongEnded: PropTypes.func,
 };
 
 VideoDetail.defaultProps = {
   song: null,
+  onSongEnded: NO_OP,
 };
 
 export default withStyles(styles)(VideoDetail);

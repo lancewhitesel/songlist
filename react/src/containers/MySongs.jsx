@@ -29,6 +29,29 @@ class MySongs extends Component {
     this.props.fetchMySongs();
   }
 
+  playNextSong() {
+    console.log('play next song!');
+    const { mySongs, selectedSong } = this.props;
+
+    let nextSongIdx = -1;
+    const selected = mySongs.find((s, idx) => {
+      console.log('finding song...idx: ', idx);
+      if (s.id === selectedSong.id) {
+        console.log('found it');
+        nextSongIdx = idx + 1;
+        return s;
+      }
+
+      return null;
+    });
+
+    if (nextSongIdx === mySongs.length) {
+      nextSongIdx = 0;
+    }
+
+    this.props.selectMySong(mySongs[nextSongIdx]);
+  }
+
   render() {
     const {
       classes: { content },
@@ -41,7 +64,7 @@ class MySongs extends Component {
         <SearchBar onSearchTermChange={term => this.props.searchMySongs(term)} />
         <Grid className={content} container spacing={8}>
           <Grid item sm={12} lg={8}>
-            <VideoDetail song={selectedSong} />
+            <VideoDetail song={selectedSong} onSongEnded={() => this.playNextSong()} />
           </Grid>
           <Grid item sm={12} lg={4}>
             <SongList
