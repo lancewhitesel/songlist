@@ -30,26 +30,18 @@ class MySongs extends Component {
   }
 
   playNextSong() {
-    console.log('play next song!');
     const { mySongs, selectedSong } = this.props;
 
-    let nextSongIdx = -1;
-    const selected = mySongs.find((s, idx) => {
-      console.log('finding song...idx: ', idx);
+    const nextSong = mySongs.reduce((next, s, idx) => {
+      let song = { ...next };
       if (s.id === selectedSong.id) {
-        console.log('found it');
-        nextSongIdx = idx + 1;
-        return s;
+        song = mySongs[(idx + 1) % mySongs.length];
       }
 
-      return null;
-    });
+      return song;
+    }, null);
 
-    if (nextSongIdx === mySongs.length) {
-      nextSongIdx = 0;
-    }
-
-    this.props.selectMySong(mySongs[nextSongIdx]);
+    this.props.selectMySong(nextSong);
   }
 
   render() {

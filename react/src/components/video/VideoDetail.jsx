@@ -40,10 +40,10 @@ class VideoDetail extends Component {
 
     this.player.loadVideoById(videoId);
     this.player.playVideo();
-    this.player.on('stateChange', (event) => {
+    const listener = this.player.on('stateChange', (event) => {
       if (event.data === 0) {
-        console.log('video ended!');
         this.props.onSongEnded();
+        this.player.off(listener);
       }
     });
   }
